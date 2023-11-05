@@ -1,6 +1,6 @@
-# deep-block-chrome-ext
+# block-site-zen-chrome-ext
 
-🧘🏻‍♂️ DeepBlock : block and regain your freedom !
+🧘🏻‍♂️ BlockSiteZen : block and regain your freedom !
 
 # TODO
 
@@ -8,6 +8,7 @@
 
 admin
 - add basic blacklist
+- add code auto-format
 - save in storage
 - add schedule configuration
 - stats of most visited url ?

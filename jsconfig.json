@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@options": ["./src/options"],
+      "@options/*": ["./src/options/*"]
+    },
     "moduleResolution": "bundler",
     "target": "ESNext",
     "module": "ESNext",

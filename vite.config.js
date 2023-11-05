@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [
     svelte(),
   ],
+  resolve: {
+    alias: {
+      '@options': resolve(__dirname, './src/options'),
+    },
+  },
   build: {
     rollupOptions: {
       input: {
