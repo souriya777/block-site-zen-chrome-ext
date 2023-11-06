@@ -8,14 +8,14 @@
 
 admin
 
-- add basic blacklist
-- save in storage
+- add control to url to add
 - add schedule configuration
 - stats of most visited url ?
 
 user
 
 - detect block url
+- can block with or not `www`
 - citations/mantras ?
 
 ## paint

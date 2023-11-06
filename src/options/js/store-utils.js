@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
 
 function writableLocalStorage(key, initialValue) {
-  let value = writable(localStorage.getItem(key) || initialValue);
+  let storedValue = localStorage.getItem(key);
+  let value = writable(storedValue ? JSON.parse(storedValue) : initialValue);
 
   const write = (key, initialValue) => {
     const lastValue = localStorage.getItem(key) || initialValue;
@@ -13,7 +14,7 @@ function writableLocalStorage(key, initialValue) {
       localStorage.removeItem(key);
       document.removeEventListener('storage', write);
     } else {
-      localStorage.setItem(key, val);
+      localStorage.setItem(key, JSON.stringify(val));
       document.addEventListener('storage', write);
     }
   });
