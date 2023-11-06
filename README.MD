@@ -8,7 +8,6 @@
 
 admin
 
-- add control to url to add
 - add schedule configuration
 - stats of most visited url ?
 
