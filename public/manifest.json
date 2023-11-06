@@ -7,14 +7,6 @@
     "128": "icon-128x128.png"
   },
   "options_page": "options.html",
-  "permissions": [
-    "storage",
-    "activeTab",
-    "scripting",
-    "tabs",
-    "notifications"
-  ],
-  "host_permissions": [
-    "https://www.google.com/*"
-  ]
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "notifications"],
+  "host_permissions": ["https://www.google.com/*"]
 }

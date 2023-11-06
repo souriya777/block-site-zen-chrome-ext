@@ -7,13 +7,14 @@
 ## ergonomy
 
 admin
+
 - add basic blacklist
-- add code auto-format
 - save in storage
 - add schedule configuration
 - stats of most visited url ?
 
 user
+
 - detect block url
 - citations/mantras ?
 

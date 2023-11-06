@@ -6,15 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --emptyOutDir --watch",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^2.4.2",
-    "rollup": "^4.2.0",
+    "@sveltejs/vite-plugin-svelte": "^2.4.6",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-svelte": "^2.34.1",
+    "prettier": "3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
+    "rollup": "^4.3.0",
     "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-rename": "^1.0.1",
     "sass": "^1.69.5",
-    "svelte": "^4.0.5",
-    "vite": "^4.4.5"
+    "svelte": "^4.2.2",
+    "vite": "^4.5.0"
   }
 }
