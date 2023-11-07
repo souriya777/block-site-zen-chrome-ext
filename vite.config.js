@@ -7,13 +7,14 @@ export default defineConfig({
   resolve: {
     alias: {
       '@options': resolve(__dirname, './src/options'),
+      '@popup': resolve(__dirname, './src/popup'),
     },
   },
   build: {
     rollupOptions: {
       input: {
-        // index: resolve(__dirname, 'index.html'),
         options: resolve(__dirname, 'options.html'),
+        popup: resolve(__dirname, 'popup.html'),
       },
     },
   },

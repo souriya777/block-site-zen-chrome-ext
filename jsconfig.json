@@ -2,7 +2,9 @@
   "compilerOptions": {
     "paths": {
       "@options": ["./src/options"],
-      "@options/*": ["./src/options/*"]
+      "@options/*": ["./src/options/*"],
+      "@popup": ["./src/popup"],
+      "@popup/*": ["./src/popup/*"]
     },
     "moduleResolution": "bundler",
     "target": "ESNext",

@@ -1,12 +1,20 @@
 {
-  "name": "DeepBlock",
-  "description": "Bloquez et retrouvez votre liberté !",
-  "version": "1.0.0",
   "manifest_version": 3,
+  "name": "DeepBlock",
+  "description": "🧘🏻‍♂️ BlockSiteZen : block and regain your freedom !",
+  "version": "1.0.0",
   "icons": {
     "128": "icon-128x128.png"
   },
+  "action": {
+    "default_popup": "popup.html"
+  },
   "options_page": "options.html",
-  "permissions": ["storage", "activeTab", "scripting", "tabs", "notifications"],
-  "host_permissions": ["https://www.google.com/*"]
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.google.com/*"
+  ]
 }
