@@ -1,7 +1,8 @@
 <script>
   import '@options/css/main.scss';
   import { blacklist } from '@options/js/store';
-  import InvalidUrlError from './js/InvalidUrlError';
+  import InvalidUrlError from '@options/js/InvalidUrlError';
+  import Schedule from '@options/lib/Schedule.svelte';
 
   let currentUrl = '';
 
@@ -34,4 +35,5 @@
   </ul>
 
   <h2>When ?</h2>
+  <Schedule />
 </main>
