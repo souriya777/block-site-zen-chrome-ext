@@ -24,7 +24,7 @@
 </script>
 
 <main>
-  <h1>DeepBlock</h1>
+  <h1>BlockSiteZen</h1>
   <h2>Blocked urls</h2>
   <input type="text" placeholder="facebook.com" bind:value={currentUrl} />
   <button on:click={() => addToBlacklist(currentUrl)}>add</button>

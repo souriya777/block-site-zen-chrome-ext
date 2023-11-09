@@ -4,30 +4,27 @@
 
 # TODO
 
-## ergonomy
+## UX
 
-admin (options)
-
-- stats of most visited url ?
-- feat(interval): add control
-
-user
+- feat(popup): when click on button `block this site`, add to storage
+- feat(popup): when click on button `edit block list`, open configuration page
+- feat(block): detect blocked url
+- feat(block): display image + mantra
+- feat(block): can block with or not `www`
 
 - init "block" page
 - add background.js ?
-
-- detect block url
-- can block with or not `www`
-
+- stats of most visited url ?
+- feat(interval): add control
 - citations/mantras ?
 
-## paint
+## UI
 
 - reset css ?
 
-## i18n ???
+## PROD
 
-## publish extension
+- i18n ???
 
 # RUN
 
