@@ -5,7 +5,6 @@ document.body.style.backgroundColor = '#eee';
 // if yes, display image & mantra
 // style it
 
-console.log('CONTENT beffff');
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(
     '🟢🟢🟢🟢🟢',
@@ -14,4 +13,3 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(request.url);
   if (request.greeting === 'hello') sendResponse({ farewell: 'goodbye my friend 😎😎😎' });
 });
-console.log('CONTENT afttttt');
