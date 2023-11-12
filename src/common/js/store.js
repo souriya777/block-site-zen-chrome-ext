@@ -1,8 +1,8 @@
 import { get } from 'svelte/store';
-import { writableLocalStorage } from '@options/js/store-utils';
-import InvalidUrlError from '@options/js/InvalidUrlError';
-import { isValidUrl, cleanUrl } from '@options/js/string-utils';
-import AllreadyExistsUrlError from './AllreadyExistsUrlError';
+import { writableLocalStorage } from '@common/js/store-utils';
+import { isValidUrl, cleanUrl } from '@common/js/string-utils';
+import InvalidUrlError from '@common/js/InvalidUrlError';
+import AllreadyExistsUrlError from '@common/js/AllreadyExistsUrlError';
 
 const blacklist = writableLocalStorage('blacklist', []);
 

@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [svelte()],
   resolve: {
     alias: {
+      '@background': resolve(__dirname, './src/background'),
+      '@common': resolve(__dirname, './src/common'),
+      '@content': resolve(__dirname, './src/content'),
       '@options': resolve(__dirname, './src/options'),
       '@popup': resolve(__dirname, './src/popup'),
     },

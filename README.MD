@@ -8,7 +8,6 @@
 
 - add message error if already exists ?
 - remove chrome.storage eslint error
-- feat(popup): when click on button `block this site`, add to storage
 - feat(popup): when click on button `edit block list`, open configuration page
 - feat(block): detect blocked url
 - feat(block): display image + mantra
@@ -18,7 +17,6 @@
 - move all "utils" in gist
 
 - init "block" page
-- add background.js ?
 - stats of most visited url ?
 - feat(interval): add control
 - citations/mantras ?

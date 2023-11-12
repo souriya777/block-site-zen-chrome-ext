@@ -1,6 +1,6 @@
 <script>
   import '@popup/css/main.scss';
-  import { addToBlacklist } from '@options/js/store';
+  import { addToBlacklist } from '@common/js/store';
 
   let url;
 

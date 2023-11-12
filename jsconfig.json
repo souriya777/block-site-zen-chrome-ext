@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
     "paths": {
+      "@background": ["./src/background"],
+      "@background/*": ["./src/background/*"],
+      "@common": ["./src/common"],
+      "@common/*": ["./src/common/*"],
+      "@content": ["./src/content"],
+      "@content/*": ["./src/content/*"],
       "@options": ["./src/options"],
       "@options/*": ["./src/options/*"],
       "@popup": ["./src/popup"],
