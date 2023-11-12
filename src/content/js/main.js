@@ -1,8 +1,13 @@
+import { blacklist, isBlacklisted } from '@common/js/store';
+
 // document.body.style.backgroundColor = '#eee';
 // document.body.style.borderStyle = '4px dashed hotpink;';
 document.body.style.borderColor = 'hotpink';
 document.body.style.borderWidth = '4px';
 document.body.style.borderStyle = 'dashed';
+
+console.log('🙏CONTENT.JS');
+console.log(isBlacklisted(window.location.href));
 
 // get current url
 // check if it's in blacklist
@@ -17,3 +22,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(request.url);
   if (request.greeting === 'hello') sendResponse({ farewell: 'goodbye my friend 😎😎😎' });
 });
+
+export function main() {
+  console.log('---------> MAIN.js');
+}

@@ -21,4 +21,12 @@ function addToBlacklist(url) {
   blacklist.update((arr) => [...arr, urlToFind]);
 }
 
-export { blacklist, addToBlacklist };
+function isBlacklisted(url) {
+  const urlToFind = cleanUrl(url);
+  console.log('😎', urlToFind, get(blacklist));
+  // FIXME duplicate code
+  const found = get(blacklist).find((item) => item.includes(urlToFind));
+  return found != null;
+}
+
+export { blacklist, addToBlacklist, isBlacklisted };
