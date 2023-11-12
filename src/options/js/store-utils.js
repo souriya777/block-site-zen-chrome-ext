@@ -1,25 +1,46 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 
 function writableLocalStorage(key, initialValue) {
-  let storedValue = localStorage.getItem(key);
-  let value = writable(storedValue ? JSON.parse(storedValue) : initialValue);
+  const stored = localStorage.getItem(key);
+  const initial = stored ? JSON.parse(stored) : initialValue;
+  const writableValue = writable(initial);
+  const { subscribe, update, set } = writableValue;
 
-  const write = (key, initialValue) => {
-    const lastValue = localStorage.getItem(key) || initialValue;
-    value = writable(lastValue);
+  // SYNC store =to=> LocalStorage
+  if (!stored && initialValue) {
+    localStorage.setItem(key, JSON.stringify(initialValue));
+  }
+
+  // SYNC LocalStorage =to=> store
+  const updateFromLocalStorage = (e) => {
+    if (e.key === key) {
+      const newValue = e.newValue ? JSON.parse(e.newValue) : null;
+      set(newValue);
+    }
   };
 
-  value.subscribe((val) => {
-    if ([null, undefined].includes(val)) {
-      localStorage.removeItem(key);
-      document.removeEventListener('storage', write);
-    } else {
-      localStorage.setItem(key, JSON.stringify(val));
-      document.addEventListener('storage', write);
-    }
-  });
+  // LISTEN for changes in LocalStorage
+  window.addEventListener('storage', updateFromLocalStorage);
 
-  return value;
+  return {
+    subscribe,
+    set: (value) => {
+      set(value);
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    update: (updater) => {
+      const value = updater(get(writableValue));
+      update(updater);
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    clear: () => {
+      set(initialValue);
+      localStorage.setItem(key, JSON.stringify(initialValue));
+    },
+    destroy: () => {
+      window.removeEventListener('storage', updateFromLocalStorage);
+    },
+  };
 }
 
 export { writableLocalStorage };

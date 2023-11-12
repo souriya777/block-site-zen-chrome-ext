@@ -6,9 +6,8 @@
 
 ## UX
 
-- feat(chrome-storage): sync with svelte store
-  -- blacklist !
-- feat(blacklist): can remove `url` in chrome-storage
+- add message error if already exists ?
+- remove chrome.storage eslint error
 - feat(popup): when click on button `block this site`, add to storage
 - feat(popup): when click on button `edit block list`, open configuration page
 - feat(block): detect blocked url
@@ -16,6 +15,7 @@
 - feat(block): can block with or not `www`
 
 - refacto(chrome-api): externalize "send message" code
+- move all "utils" in gist
 
 - init "block" page
 - add background.js ?

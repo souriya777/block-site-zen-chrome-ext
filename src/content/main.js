@@ -1,4 +1,8 @@
-document.body.style.backgroundColor = '#eee';
+// document.body.style.backgroundColor = '#eee';
+// document.body.style.borderStyle = '4px dashed hotpink;';
+document.body.style.borderColor = 'hotpink';
+document.body.style.borderWidth = '4px';
+document.body.style.borderStyle = 'dashed';
 
 // get current url
 // check if it's in blacklist

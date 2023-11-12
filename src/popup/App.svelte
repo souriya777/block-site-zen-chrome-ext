@@ -1,6 +1,6 @@
 <script>
   import '@popup/css/main.scss';
-  import ChromeStorage from '@options/js/ChromeStorage';
+  import { addToBlacklist } from '@options/js/store';
 
   let url;
 
@@ -24,8 +24,7 @@
     console.log('TODO');
   }
   function blockSite() {
-    console.log('TODO');
-    ChromeStorage.set('urlbis', url);
+    addToBlacklist(url);
   }
   function editBlockList() {
     console.log('TODO');
