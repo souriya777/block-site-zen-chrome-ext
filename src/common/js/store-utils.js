@@ -1,46 +1,90 @@
 import { writable, get } from 'svelte/store';
+import LocalStorage from '@common/js/LocalStorage';
+import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
 
-function writableLocalStorage(key, initialValue) {
-  const stored = localStorage.getItem(key);
-  const initial = stored ? JSON.parse(stored) : initialValue;
-  const writableValue = writable(initial);
-  const { subscribe, update, set } = writableValue;
+function setStorage(key, value, isChromeStorage) {
+  if (isChromeStorage) {
+    ChromeLocalStorage.set(key, JSON.stringify(value));
+  } else {
+    LocalStorage.set(key, JSON.stringify(value));
+  }
+}
 
-  // SYNC store =to=> LocalStorage
-  if (!stored && initialValue) {
-    localStorage.setItem(key, JSON.stringify(initialValue));
+function writableStorage(key, initialValue, isChromeStorage = false) {
+  let storageValue;
+  let writableValue;
+
+  if (isChromeStorage) {
+    // hack because chrome storage is ASYNChronous
+    chrome.storage.local.get([key], (result) => {
+      storageValue = result[key];
+      const initial = storageValue !== undefined ? JSON.parse(storageValue) : initialValue;
+      writableValue.set(initial);
+    });
+    writableValue = writable(storageValue);
+  } else {
+    // localStorage is SYNChronous => no hack needed
+    storageValue = LocalStorage.get(key);
+    const initial = storageValue ? JSON.parse(storageValue) : initialValue;
+    writableValue = writable(initial);
   }
 
-  // SYNC LocalStorage =to=> store
+  // SYNC store =to=> Storage
+  if (!storageValue && initialValue) {
+    if (!isChromeStorage) {
+      setStorage(key, initialValue, isChromeStorage);
+    }
+  }
+
+  // SYNC Storage =to=> store
   const updateFromLocalStorage = (e) => {
     if (e.key === key) {
       const newValue = e.newValue ? JSON.parse(e.newValue) : null;
       set(newValue);
     }
   };
+  const updateFromChromeStorage = (changes) => {
+    const newValue = JSON.parse(changes[key]?.['newValue']);
+    set(newValue);
+  };
 
-  // LISTEN for changes in LocalStorage
-  window.addEventListener('storage', updateFromLocalStorage);
+  // LISTEN for changes in Storage
+  if (isChromeStorage) {
+    chrome.storage.onChanged.addListener(updateFromChromeStorage);
+  } else {
+    window.addEventListener('storage', updateFromLocalStorage);
+  }
+
+  const { subscribe, update, set } = writableValue;
 
   return {
     subscribe,
     set: (value) => {
       set(value);
-      localStorage.setItem(key, JSON.stringify(value));
+      setStorage(key, value, isChromeStorage);
     },
     update: (updater) => {
       const value = updater(get(writableValue));
       update(updater);
-      localStorage.setItem(key, JSON.stringify(value));
+      setStorage(key, value, isChromeStorage);
     },
     clear: () => {
       set(initialValue);
-      localStorage.setItem(key, JSON.stringify(initialValue));
+      setStorage(key, initialValue, isChromeStorage);
     },
     destroy: () => {
       window.removeEventListener('storage', updateFromLocalStorage);
+      chrome.storage.onChanged.removeListener(updateFromChromeStorage);
     },
   };
 }
 
-export { writableLocalStorage };
+function writableLocalStorage(key, initialValue) {
+  return writableStorage(key, initialValue);
+}
+
+function writableChromeStorage(key, initialValue) {
+  return writableStorage(key, initialValue, true);
+}
+
+export { writableLocalStorage, writableChromeStorage };

@@ -7,7 +7,6 @@
 ## UX
 
 - feat(block): detect blocked url
-- feat(chrome-storage): make it synchronous
 - add message error if already exists ?
 - remove chrome.storage eslint error
 - feat(popup): when click on button `edit block list`, open configuration page

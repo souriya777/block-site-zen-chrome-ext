@@ -1,6 +1,6 @@
 <script>
   import '@popup/css/main.scss';
-  import { addToBlacklist } from '@common/js/store';
+  import { addToBlacklist, blacklist } from '@common/js/store';
 
   let url;
 
@@ -24,6 +24,7 @@
     console.log('TODO');
   }
   function blockSite() {
+    console.log('block this site', url, $blacklist);
     addToBlacklist(url);
   }
   function editBlockList() {
