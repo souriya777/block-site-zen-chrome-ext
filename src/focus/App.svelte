@@ -3,6 +3,7 @@
   import '@focus/css/fonts.scss';
   import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
   import { extractDomain } from '@common/js/string-utils';
+  import Logo from '@common/lib/Logo.svelte';
 
   const IMGS = [
     {
@@ -70,7 +71,12 @@
   <div class="background" style={`background-image: url(/img/${img});`}></div>
   <div class="foreground">
     <div class="headband">
-      <div class="info">LOGO This site is blocked by BlockSiteZen</div>
+      <div class="info">
+        <span class="logo">
+          <Logo />
+        </span>
+        This site is blocked by BlockSiteZen
+      </div>
       <button class="goto" on:click={gotoOptions}>Go settings</button>
     </div>
     <div class="content">
@@ -92,6 +98,14 @@
 
   :global(body) {
     font-family: 'montserrat-400', sans-serif;
+  }
+
+  :global(.credit a) {
+    color: inherit;
+  }
+
+  :global(.credit a:hover) {
+    color: var(--color-accent);
   }
 
   .background {
@@ -167,11 +181,12 @@
     color: var(--color-discret);
   }
 
-  :global(.credit a) {
-    color: inherit;
+  .info {
+    display: flex;
+    align-items: center;
   }
 
-  :global(.credit a:hover) {
-    color: var(--color-accent);
+  .info .logo {
+    margin-inline-end: 14px;
   }
 </style>

@@ -2,6 +2,7 @@
   import '@popup/css/main.scss';
   import { addToBlacklist, blacklist } from '@common/js/store';
   import { currentUrl } from '@common/js/chrome-utils';
+  import Logo from '@common/lib/Logo.svelte';
 
   let url;
 
@@ -30,6 +31,7 @@
 
 <main>
   <h1>BlockSiteZen</h1>
+  <Logo />
   <div>url:{url}</div>
   <button class="icon" on:click={openParams}>⚙️</button>
   <button class="primary" on:click={blockSite}>Block this site</button>

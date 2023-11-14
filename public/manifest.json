@@ -4,7 +4,7 @@
   "description": "🧘🏻‍♂️ BlockSiteZen : block and regain your freedom !",
   "version": "1.0.0",
   "icons": {
-    "128": "icon-128x128.png"
+    "128": "/img/icon-128x128.png"
   },
   "background": {
     "service_worker": "background.js",

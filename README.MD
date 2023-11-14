@@ -4,29 +4,36 @@
 
 # TODO
 
-## UX
+- feat(popup): when click on button `edit block list`, open configuration page
+
+POPUP
+
+- style(popup): style it
+- style(popup): switch color blocked/not-blocked
+- style(popup): add a "drawing man" ?
+
+OPTIONS
+
+- feat(interval): design interval
+- feat(interval): add control
+- feat(blocklist): style list
+
+MVP
 
 - add a logo for my extension
-- add message error if already exists ?
-- remove chrome.storage eslint error
-- feat(popup): when click on button `edit block list`, open configuration page
-- feat(block): display image + mantra
-- feat(block): can block with or not `www`
-- remove unused fonts
-- refacto(chrome-api): externalize "send message" code
-- move all "utils" in gist
+- ci(prod): deploy to PROD
 
-- stats of most visited url ?
-- feat(interval): add control
-- citations/mantras ?
-
-## UI
+REFACTO
 
 - reset css ?
+- refacto(chrome-api): externalize "send message" code
+- add message error if already exists ?
+- remove chrome.storage eslint error
 
-## PROD
+BONUS
 
-- i18n ???
+- stats of most visited url ?
+- move all "utils" in gist
 
 # RUN
 
