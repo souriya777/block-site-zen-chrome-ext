@@ -6,18 +6,17 @@
 
 ## UX
 
-- feat(block): detect blocked url & redirect
-- style(block): tune message
+- feat(block): add dynamic url
+- add a logo for my extension
 - add message error if already exists ?
 - remove chrome.storage eslint error
 - feat(popup): when click on button `edit block list`, open configuration page
 - feat(block): display image + mantra
 - feat(block): can block with or not `www`
-
+- remove unused fonts
 - refacto(chrome-api): externalize "send message" code
 - move all "utils" in gist
 
-- init "block" page
 - stats of most visited url ?
 - feat(interval): add control
 - citations/mantras ?

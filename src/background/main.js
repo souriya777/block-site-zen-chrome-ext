@@ -37,8 +37,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 chrome.runtime.onMessage.addListener(function (request, sender) {
   console.log(request.redirect, '⭐️');
   if (request?.redirect) {
-    setTimeout(() => {
-      chrome.tabs.update(sender.tab.id, { url: request.redirect });
-    }, 5000);
+    chrome.tabs.update(sender.tab.id, { url: request.redirect });
   }
 });
