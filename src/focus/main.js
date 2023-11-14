@@ -1,4 +1,4 @@
-import App from '@options/App.svelte';
+import App from '@focus/App.svelte';
 
 const app = new App({
   target: document.getElementById('app'),

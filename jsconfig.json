@@ -7,6 +7,8 @@
       "@common/*": ["./src/common/*"],
       "@content": ["./src/content"],
       "@content/*": ["./src/content/*"],
+      "@focus": ["./src/focus"],
+      "@focus/*": ["./src/focus/*"],
       "@options": ["./src/options"],
       "@options/*": ["./src/options/*"],
       "@popup": ["./src/popup"],
