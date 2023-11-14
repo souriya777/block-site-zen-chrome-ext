@@ -35,7 +35,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 // REDIRECT FOCUS
 chrome.runtime.onMessage.addListener(function (request, sender) {
-  console.log(request.redirect, '⭐️');
   if (request?.redirect) {
     chrome.tabs.update(sender.tab.id, { url: request.redirect });
   }

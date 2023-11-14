@@ -6,7 +6,6 @@
 
 ## UX
 
-- feat(block): add dynamic url
 - add a logo for my extension
 - add message error if already exists ?
 - remove chrome.storage eslint error

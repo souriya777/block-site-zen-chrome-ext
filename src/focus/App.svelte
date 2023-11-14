@@ -1,6 +1,8 @@
 <script>
   import '@focus/css/modern-reset.scss';
   import '@focus/css/fonts.scss';
+  import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
+  import { extractDomain } from '@common/js/string-utils';
 
   const IMGS = [
     {
@@ -46,7 +48,11 @@
     },
   ];
 
-  let url = 'fast.com';
+  let url;
+
+  ChromeLocalStorage.get('currentUrl').then(
+    (result) => (url = extractDomain(result['currentUrl'])),
+  );
 
   $: indexMantra = Math.floor(Math.random() * MANTRAS.length);
   $: quote = MANTRAS.at(indexMantra).quote;

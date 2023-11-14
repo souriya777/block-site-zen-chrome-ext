@@ -1,10 +1,9 @@
-import { get } from 'svelte/store';
-import { blacklist, isBlacklisted } from '@common/js/store';
+import { isBlacklisted } from '@common/js/store';
 import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
 
 console.log('🙏CONTENT.JS...');
 
-ChromeLocalStorage.get('blacklist').then((blacklist) => {
+ChromeLocalStorage.get('blacklist').then(() => {
   const blacklisted = isBlacklisted(window.location.href);
   console.log('blacklisted?', blacklisted);
   // document.body.style.borderColor = 'hotpink';
@@ -12,12 +11,12 @@ ChromeLocalStorage.get('blacklist').then((blacklist) => {
   // document.body.style.borderStyle = 'dashed';
 
   if (blacklisted) {
+    ChromeLocalStorage.set('currentUrl', window.location.href);
+
     const optionUrl = 'chrome-extension://' + chrome.runtime.id + '/focus.html';
     console.log(optionUrl);
     chrome.runtime.sendMessage({ redirect: optionUrl });
   }
-
-  // window.location.href = optionUrl;
 });
 
 // get current url

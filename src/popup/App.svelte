@@ -1,16 +1,12 @@
 <script>
   import '@popup/css/main.scss';
   import { addToBlacklist, blacklist } from '@common/js/store';
+  import { currentUrl } from '@common/js/chrome-utils';
 
   let url;
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Get the current tab
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      let currentTab = tabs[0];
-      url = currentTab.url;
-      console.log('🔥Current URL:', url);
-    });
+    currentUrl().then((result) => (url = result));
   });
 
   chrome.runtime.sendMessage({ data: 'Handshake' }, function (response) {
