@@ -4,19 +4,12 @@
 
 # TODO
 
-- feat(popup): when click on button `edit block list`, open configuration page
-
-POPUP
-
-- style(popup): style it
-- style(popup): switch color blocked/not-blocked
-- style(popup): add a "drawing man" ?
-
 OPTIONS
 
 - feat(interval): design interval
 - feat(interval): add control
 - feat(blocklist): style list
+- feat(popup): change message, when user add blocked url directly in options.html
 
 MVP
 
@@ -25,7 +18,7 @@ MVP
 
 REFACTO
 
-- reset css ?
+- refactor color CSS variables name
 - refacto(chrome-api): externalize "send message" code
 - add message error if already exists ?
 - remove chrome.storage eslint error

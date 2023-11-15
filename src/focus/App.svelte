@@ -1,9 +1,9 @@
 <script>
-  import '@focus/css/modern-reset.scss';
-  import '@focus/css/fonts.scss';
+  import '@common/css/main.scss';
   import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
+  import { getOptionsUrl } from '@common/js/chrome-utils';
   import { extractDomain } from '@common/js/string-utils';
-  import Logo from '@common/lib/Logo.svelte';
+  import LogoSvg from '@common/lib/LogoSvg.svelte';
 
   const IMGS = [
     {
@@ -63,7 +63,7 @@
   $: credit = IMGS.at(indexImg).credit;
 
   function gotoOptions() {
-    window.location.href = 'chrome-extension://' + chrome.runtime.id + '/options.html';
+    window.location.href = getOptionsUrl();
   }
 </script>
 
@@ -73,11 +73,11 @@
     <div class="headband">
       <div class="info">
         <span class="logo">
-          <Logo />
+          <LogoSvg />
         </span>
         This site is blocked by BlockSiteZen
       </div>
-      <button class="goto" on:click={gotoOptions}>Go settings</button>
+      <button class="normal" on:click={gotoOptions}>Go settings</button>
     </div>
     <div class="content">
       <div class="mantra">{quote}</div>
@@ -91,11 +91,6 @@
 </main>
 
 <style>
-  :root {
-    --color-accent: hotpink;
-    --color-discret: #cccccc;
-  }
-
   :global(body) {
     font-family: 'montserrat-400', sans-serif;
   }
@@ -122,7 +117,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    color: #fff;
+    color: var(--color-primary);
   }
 
   .headband {
@@ -156,22 +151,6 @@
 
   .url {
     color: var(--color-accent);
-  }
-
-  .goto {
-    background-color: #8f8f8f;
-
-    border: none;
-    padding: 8px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color ease 300ms;
-  }
-
-  .goto:hover {
-    background-color: var(--color-discret);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    transition: all ease 300ms;
   }
 
   .credit {
