@@ -3,7 +3,7 @@
   import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
   import { getOptionsUrl } from '@common/js/chrome-utils';
   import { extractDomain } from '@common/js/string-utils';
-  import LogoSvg from '@common/lib/LogoSvg.svelte';
+  import Headband from '@common/lib/Headband.svelte';
 
   const IMGS = [
     {
@@ -57,6 +57,7 @@
 
   $: indexMantra = Math.floor(Math.random() * MANTRAS.length);
   $: quote = MANTRAS.at(indexMantra).quote;
+  $: author = MANTRAS.at(indexMantra).author;
 
   $: indexImg = Math.floor(Math.random() * IMGS.length);
   $: img = IMGS.at(indexImg).img;
@@ -70,17 +71,15 @@
 <main>
   <div class="background" style={`background-image: url(/img/${img});`}></div>
   <div class="foreground">
-    <div class="headband">
-      <div class="info">
-        <span class="logo">
-          <LogoSvg />
-        </span>
-        This site is blocked by BlockSiteZen
-      </div>
-      <button class="normal" on:click={gotoOptions}>Go settings</button>
-    </div>
+    <Headband>
+      <span slot="title"> This site is blocked by BlockSiteZen </span>
+      <span slot="action">
+        <button class="normal" on:click={gotoOptions}>Go settings</button>
+      </span>
+    </Headband>
     <div class="content">
       <div class="mantra">{quote}</div>
+      <div class="author">{author}</div>
       <div class="reason">
         Will <span class="url">{url}</span> help you achieve your goals ?
       </div>
@@ -120,16 +119,6 @@
     color: var(--color-primary);
   }
 
-  .headband {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 16px 56px;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-  }
-
   .content {
     max-width: 618px;
     margin: 42px 59px;
@@ -141,6 +130,10 @@
     word-spacing: 4px;
     line-height: 1.1;
     overflow-wrap: break-word;
+  }
+
+  .author {
+    font-size: 16px;
   }
 
   .reason {
@@ -158,14 +151,5 @@
     bottom: 10px;
     right: 10px;
     color: var(--color-discret);
-  }
-
-  .info {
-    display: flex;
-    align-items: center;
-  }
-
-  .info .logo {
-    margin-inline-end: 14px;
   }
 </style>

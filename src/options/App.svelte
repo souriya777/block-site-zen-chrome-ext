@@ -1,34 +1,40 @@
 <script>
-  import '@options/css/main.scss';
-  import { blacklist, addToBlacklist } from '@common/js/store';
+  import '@common/css/main.scss';
   import Schedule from '@options/lib/Schedule.svelte';
-
-  let currentUrl = '';
-
-  function removeUrlFromBlacklist(url) {
-    blacklist.update((arr) => [...arr.filter((arrUrl) => arrUrl !== url)]);
-  }
-
-  function clearBlacklist() {
-    blacklist.clear();
-  }
+  import Headband from '@common/lib/Headband.svelte';
+  import Blacklist from '@options/lib/Blacklist.svelte';
 </script>
 
 <main>
-  <h1>BlockSiteZen</h1>
-  <h2>Blocked urls</h2>
-  <h3>blacklist{$blacklist}</h3>
-  <input type="text" placeholder="facebook.com" bind:value={currentUrl} />
-  <button on:click={() => addToBlacklist(currentUrl)}>add</button>
-  <ul class="blacklist">
-    {#if $blacklist}
-      {#each $blacklist as url}
-        <li>{url} <button on:click={() => removeUrlFromBlacklist(url)}>❌</button></li>
-      {/each}
-    {/if}
-  </ul>
+  <div class="options">
+    <Headband>
+      <span slot="title">
+        <h1>BlockSiteZen</h1>
+      </span>
+    </Headband>
 
-  <h2>When ?</h2>
-  <button on:click={clearBlacklist}>CLEAR blacklist</button>
-  <Schedule />
+    <h2>Blocked urls</h2>
+    <div class="blacklist">
+      <Blacklist />
+    </div>
+
+    <h2>When ?</h2>
+    <Schedule />
+  </div>
 </main>
+
+<style>
+  main {
+    height: 100%;
+    /* background-color: var(--background-color-tertiary);
+    color: var(--color-primary); */
+  }
+
+  .blacklist {
+    margin-inline: 20px;
+  }
+
+  .options {
+    /* max-width: var(--max-width-page-options); */
+  }
+</style>

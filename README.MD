@@ -6,12 +6,10 @@
 
 OPTIONS
 
+- feat(blocklist): display successful message
 - feat(interval): design interval
 - feat(interval): add control
-- feat(blocklist): style list
 - feat(popup): change message, when user add blocked url directly in options.html
-
-MVP
 
 - add a logo for my extension
 - ci(prod): deploy to PROD
@@ -25,6 +23,7 @@ REFACTO
 
 BONUS
 
+- transition svelte ?
 - stats of most visited url ?
 - move all "utils" in gist
 

@@ -1,21 +1,33 @@
 :root {
   --color-accent: #ff69b4;
   --color-accent-hover: #ff87c3;
+  --color-accent-hover2: #69ffb4;
+  --color-accent-hover3: #d2ffe9;
+  --color-error: #d93025;
   --color-discret: #cccccc;
   --color-primary: #fff;
+  --color-primary-alternative: #000;
   --color-secondary: #333;
   --color-button: #8f8f8f;
   --background-color-secondary: #333;
   --background-color-tertiary: #555;
   --size-icon: 30px;
+  --max-width-page-options: 900px;
+  --border-radius-button: 6px;
   --transition-button: all ease 300ms;
+}
+
+ul {
+  list-style: none;
+  padding-inline-start: 0;
+  margin: 0;
 }
 
 button.normal {
   background-color: var(--color-button);
   border: none;
   padding: 8px 20px;
-  border-radius: 6px;
+  border-radius: var(--border-radius-button);
   cursor: pointer;
   transition: background-color ease 300ms;
 }
