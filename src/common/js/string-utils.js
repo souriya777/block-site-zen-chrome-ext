@@ -12,3 +12,7 @@ export function extractDomain(url) {
   const result = url.match(REGEX_VALID_URL);
   return `${result?.[3]}.${result?.[4]}`;
 }
+
+export function isNotEmpty(str) {
+  return str !== null && str !== undefined && typeof str === 'string' && str.trim().length > 0;
+}

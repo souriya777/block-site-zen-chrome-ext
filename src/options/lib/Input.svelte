@@ -1,4 +1,5 @@
 <script>
+  import { isNotEmpty } from '@common/js/string-utils';
   import ExclamationSvg from '@common/lib/ExclamationSvg.svelte';
 
   export let value;
@@ -6,16 +7,29 @@
   export let size = 24;
   export let handleChange;
   export let errorMsg;
+  export let timestamp;
+
+  let input;
+
+  $: if (timestamp) {
+    input.focus();
+  }
 </script>
 
 <div class="input">
   <div class="container">
-    <input type="text" bind:value {placeholder} {size} on:keyup={handleChange} /><span class="icon"
-      ><slot name="icon" /></span
-    >
+    <input
+      type="text"
+      class:error={isNotEmpty(errorMsg)}
+      bind:this={input}
+      bind:value
+      {placeholder}
+      {size}
+      on:keyup={handleChange}
+    /><span class="icon"><slot name="icon-svg" /></span>
   </div>
   {#if errorMsg}
-    <span class="error"><ExclamationSvg />{errorMsg}</span>
+    <span class="error-msg"><ExclamationSvg />{errorMsg}</span>
   {/if}
 </div>
 
@@ -24,11 +38,11 @@
     --transition: ease 250ms;
   }
 
-  :global(.icon svg) {
+  :global(.input .icon svg) {
     display: flex;
   }
 
-  :global(.error svg) {
+  :global(.input .error-msg svg) {
     height: 16px;
     width: 16px;
     margin-inline-end: 4px;
@@ -81,7 +95,11 @@
     transition: opacity transform ease-in-out 50ms;
   }
 
-  .error {
+  input.error {
+    border-color: var(--color-error);
+  }
+
+  .error-msg {
     position: absolute;
     display: flex;
     align-items: center;

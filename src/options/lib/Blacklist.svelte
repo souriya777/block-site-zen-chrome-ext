@@ -1,12 +1,7 @@
 <script>
-  import { blacklist, addToBlacklist } from '@common/js/store';
-  import PlusCircle from '@common/lib/PlusCircle.svelte';
+  import { blacklist } from '@common/js/store';
   import BinSvg from '@common/lib/BinSvg.svelte';
-  import Input from '@options/lib/Input.svelte';
-  import { isValidUrl } from '@common/js/string-utils';
-
-  let currentUrl = '';
-  let errorMsg;
+  import AddUrlForm from '@options/lib/AddUrlForm.svelte';
 
   function removeUrlFromBlacklist(url) {
     blacklist.update((arr) => [...arr.filter((arrUrl) => arrUrl !== url)]);
@@ -15,43 +10,13 @@
   function clearBlacklist() {
     blacklist.clear();
   }
-
-  function handleChangeUrl(e) {
-    currentUrl = e.target.value;
-
-    if (errorMsg) {
-      if (isValidUrl(currentUrl)) {
-        errorMsg = '';
-      }
-    }
-  }
-
-  function handleAddUrl() {
-    if (!isValidUrl(currentUrl)) {
-      errorMsg = 'url is invalid';
-      return;
-    }
-
-    addToBlacklist(currentUrl);
-  }
 </script>
 
 <div class="blacklist">
   <div class="header">
     <div class="clear"><button class="normal" on:click={clearBlacklist}>clear</button></div>
     <div class="add">
-      <Input
-        placeholder="facebook.com"
-        size={40}
-        value={currentUrl}
-        handleChange={handleChangeUrl}
-        {errorMsg}
-      >
-        <span slot="icon">
-          <PlusCircle />
-        </span>
-      </Input>
-      <button class="primary normal" on:click={handleAddUrl}>add</button>
+      <AddUrlForm />
     </div>
   </div>
   <div class="content">
@@ -96,7 +61,7 @@
   }
 
   .blacklist {
-    max-width: 700px;
+    max-width: 686px;
     border: 4px solid var(--color-primary-alternative);
     font-size: 14px;
     border-radius: var(--border-radius-container);
@@ -122,9 +87,5 @@
 
   .add {
     display: flex;
-  }
-
-  .add button {
-    margin-inline-start: 10px;
   }
 </style>
