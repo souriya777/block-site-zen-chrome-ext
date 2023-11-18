@@ -14,9 +14,7 @@
     </Headband>
 
     <h2>Blocked urls</h2>
-    <div class="blacklist">
-      <Blacklist />
-    </div>
+    <Blacklist />
 
     <h2>When ?</h2>
     <Schedule />
@@ -28,10 +26,6 @@
     height: 100%;
     /* background-color: var(--background-color-tertiary);
     color: var(--color-primary); */
-  }
-
-  .blacklist {
-    margin-inline: 20px;
   }
 
   .options {

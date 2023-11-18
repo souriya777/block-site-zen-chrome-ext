@@ -1,9 +1,11 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import { addToBlacklist } from '@common/js/store';
   import PlusCircle from '@common/lib/PlusCircle.svelte';
   import Input from '@options/lib/Input.svelte';
   import { isValidUrl } from '@common/js/string-utils';
 
+  const dispatch = createEventDispatcher();
   let currentUrl = '';
   let errorMsg;
   let timestamp;
@@ -26,6 +28,10 @@
     }
 
     addToBlacklist(currentUrl);
+    dispatch('addSuccess', {
+      url: currentUrl,
+    });
+    currentUrl = '';
   }
 </script>
 

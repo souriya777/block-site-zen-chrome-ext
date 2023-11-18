@@ -6,7 +6,6 @@
 
 OPTIONS
 
-- feat(blocklist): display successful message
 - feat(interval): design interval
 - feat(interval): add control
 - feat(popup): change message, when user add blocked url directly in options.html

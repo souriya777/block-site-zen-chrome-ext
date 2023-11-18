@@ -1,7 +1,10 @@
 <script>
   import { blacklist } from '@common/js/store';
   import BinSvg from '@common/lib/BinSvg.svelte';
+  import Snackbar from '@common/lib/Snackbar.svelte';
   import AddUrlForm from '@options/lib/AddUrlForm.svelte';
+
+  let successMessage = null;
 
   function removeUrlFromBlacklist(url) {
     blacklist.update((arr) => [...arr.filter((arrUrl) => arrUrl !== url)]);
@@ -10,13 +13,21 @@
   function clearBlacklist() {
     blacklist.clear();
   }
+
+  function showSucessMessage(url) {
+    successMessage = `${url} was added with success 🎉`;
+  }
 </script>
 
 <div class="blacklist">
   <div class="header">
     <div class="clear"><button class="normal" on:click={clearBlacklist}>clear</button></div>
     <div class="add">
-      <AddUrlForm />
+      <AddUrlForm
+        on:addSuccess={(e) => {
+          showSucessMessage(e.detail?.url);
+        }}
+      />
     </div>
   </div>
   <div class="content">
@@ -33,6 +44,8 @@
       {/if}
     </ul>
   </div>
+
+  <Snackbar message={successMessage} />
 </div>
 
 <style>
@@ -61,6 +74,7 @@
   }
 
   .blacklist {
+    position: relative;
     max-width: 686px;
     border: 4px solid var(--color-primary-alternative);
     font-size: 14px;
