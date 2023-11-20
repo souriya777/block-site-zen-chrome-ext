@@ -6,8 +6,33 @@
 
 OPTIONS
 
+- refactor(color-system): make it coherent
+  -- focus.html
+  -- popup.html
+  -- options.html
 - feat(interval): design interval
-- feat(interval): add control
+- feat(interval): add effects
+- refactor MOVE ALL `:global`
+
+```
+:global(.logo svg) {
+    height: 32px;
+    width: 32px;
+  }
+```
+
+- refactor
+
+```
+:global(.input .error-msg svg) {
+    height: 16px;
+    width: 16px;
+    margin-inline-end: 4px;
+  }
+```
+
+- feat(interval): save in store
+- feat(interval): detect in content.js
 - feat(popup): change message, when user add blocked url directly in options.html
 - feat(options): arrow down list (to indicate it is... a list)
 

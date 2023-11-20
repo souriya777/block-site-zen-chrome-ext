@@ -1,6 +1,6 @@
 <script>
-  import Interval from '@options/lib/Interval.svelte';
   import { onMount } from 'svelte';
+  import Interval from '@options/lib/Interval.svelte';
 
   let monday = false;
   let tuesday = false;
@@ -34,7 +34,7 @@
   <legend>interval : </legend>
   {#each intervals as interval, i (interval.id)}
     <div>
-      <Interval id={interval.id} />
+      <Interval id={interval.id} value="09:00" />
       {#if i > 0}
         <button on:click={() => removeInterval(interval.id)}>➖</button>
       {/if}

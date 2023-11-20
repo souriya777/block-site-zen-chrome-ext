@@ -1,18 +1,35 @@
 <script>
   import { isNotEmpty } from '@common/js/string-utils';
   import ExclamationSvg from '@common/lib/ExclamationSvg.svelte';
+  import CrossSvg from '@common/lib/CrossSvg.svelte';
 
   export let value;
   export let placeholder;
   export let size = 24;
-  export let handleChange;
-  export let errorMsg;
+  export let callbackValue;
+  export let errorMsg = '';
   export let timestamp;
+  export let canClear = false;
 
   let input;
 
-  $: if (timestamp) {
+  $: if (isNotEmpty(value)) {
+    callbackValue(value);
+  }
+
+  $: if (timestamp && input) {
     input.focus();
+  }
+
+  function clear() {
+    value = '';
+    input.focus();
+  }
+
+  function handleChange(e) {
+    if (e?.target?.value) {
+      callbackValue(e.target.value);
+    }
   }
 </script>
 
@@ -21,12 +38,24 @@
     <input
       type="text"
       class:error={isNotEmpty(errorMsg)}
+      class:canClear
       bind:this={input}
       bind:value
       {placeholder}
       {size}
       on:keyup={handleChange}
-    /><span class="icon"><slot name="icon-svg" /></span>
+      on:change={handleChange}
+    />
+    <span class="input__icon">
+      <slot name="icon-svg" />
+    </span>
+    {#if canClear}
+      <span class="input__icon close">
+        <button class="icon secondary" on:click={clear}>
+          <CrossSvg />
+        </button>
+      </span>
+    {/if}
   </div>
   {#if errorMsg}
     <span class="error-msg"><ExclamationSvg />{errorMsg}</span>
@@ -36,10 +65,6 @@
 <style>
   :root {
     --transition: ease 250ms;
-  }
-
-  :global(.input .icon svg) {
-    display: flex;
   }
 
   :global(.input .error-msg svg) {
@@ -55,7 +80,7 @@
     overflow: hidden;
   }
 
-  .container .icon {
+  .container .input__icon {
     order: 1;
   }
 
@@ -65,31 +90,35 @@
 
   input {
     flex-grow: 1;
-    height: 40px;
+    height: var(--height-input);
     border: 1px solid transparent;
     text-indent: 28px;
     transition: all var(--transition);
   }
 
   input:hover {
-    border-color: var(--color-accent);
+    border-color: var(--color-primary);
   }
 
   input:focus {
     text-indent: 10px;
     outline: none;
-    border-color: var(--color-accent);
+    border-color: var(--color-primary);
     transition: all var(--transition);
   }
 
-  .icon {
+  .input__icon {
     position: absolute;
     margin-inline-start: 2px;
     fill: var(--color-discret);
     transition: all var(--transition);
   }
 
-  input:focus + .icon {
+  .input__icon.close {
+    right: 6px;
+  }
+
+  input:focus + .input__icon {
     opacity: 0;
     transform: translateX(-4px);
     transition: opacity transform ease-in-out 50ms;
@@ -107,5 +136,9 @@
     color: var(--color-error);
     fill: var(--color-error);
     font-size: 12px;
+  }
+
+  .canClear {
+    padding-inline-end: 38px;
   }
 </style>

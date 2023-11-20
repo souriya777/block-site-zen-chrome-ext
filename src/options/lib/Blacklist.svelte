@@ -65,7 +65,7 @@
   }
 
   li:hover {
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
 
   .url {
@@ -77,7 +77,6 @@
     position: relative;
     max-width: 686px;
     border: 4px solid var(--color-primary-alternative);
-    font-size: 14px;
     border-radius: var(--border-radius-container);
   }
 

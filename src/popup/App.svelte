@@ -72,7 +72,6 @@
   :global(.logo svg) {
     height: 32px;
     width: 32px;
-    display: flex;
   }
 
   main {
@@ -103,7 +102,7 @@
   }
 
   .url {
-    color: var(--color-accent);
+    color: var(--color-primary);
     font-family: 'montserrat-700';
   }
 

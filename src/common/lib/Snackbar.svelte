@@ -74,7 +74,7 @@
     padding: unset;
     margin-inline-start: 20px;
     background: none;
-    color: var(--color-accent);
+    color: var(--color-primary);
     font-family: 'montserrat-700';
     cursor: pointer;
   }

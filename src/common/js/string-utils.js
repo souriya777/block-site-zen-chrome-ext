@@ -16,3 +16,11 @@ export function extractDomain(url) {
 export function isNotEmpty(str) {
   return str !== null && str !== undefined && typeof str === 'string' && str.trim().length > 0;
 }
+
+/**
+ * @param {string} str
+ * @returns {boolean}
+ */
+export function checkInterval(str) {
+  return /^(?:[0-9]|[01]\d|2[0-3])[:h-]([0-5]\d|[0-9])$/i.test(str);
+}

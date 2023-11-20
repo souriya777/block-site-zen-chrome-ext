@@ -1,16 +1,18 @@
 :root {
-  --color-accent: #ff69b4;
-  --color-accent-hover: #ff87c3;
-  --color-accent-hover2: #69ffb4;
-  --color-accent-hover3: #d2ffe9;
-  --color-error: #d93025;
+  --color-primary: #ff69b4;
+  --color-on-primary: #fff;
+  --color-secondary: #8f8e8e;
+  --color-secondary-lighter: #9e9d9d;
+  --color-on-secondary: #fff;
   --color-discret: #cccccc;
-  --color-primary: #fff;
-  --color-primary-alternative: #000;
-  --color-secondary: #333;
-  --color-button: #8f8f8f;
-  --background-color-secondary: #333;
-  --background-color-tertiary: #555;
+  // --color-primary-hover: #ff87c3;
+  // --color-error: #d93025;
+  // --color-primary-alternative: #000;
+  // --color-secondary: #333;
+  // --background-color-secondary: #333;
+  // --background-color-tertiary: #555;
+
+  --height-input: 40px;
   --size-icon: 30px;
   --max-width-page-options: 900px;
   --border-radius-button: 6px;
@@ -23,11 +25,16 @@ ul {
   margin: 0;
 }
 
+button {
+  color: inherit;
+}
+
 button.normal {
-  background-color: var(--color-button);
   border: none;
   padding: 8px 20px;
   border-radius: var(--border-radius-button);
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
   cursor: pointer;
   transition: background-color ease 300ms;
 }
@@ -40,8 +47,17 @@ button.icon {
   align-items: center;
   height: var(--size-icon);
   width: var(--size-icon);
-  background-color: var(--color-button);
+  background-color: var(--color-secondary);
   cursor: pointer;
+
+  &.secondary {
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--color-discret);
+      fill: var(--color-primary);
+    }
+  }
 }
 
 button.icon:hover,
@@ -52,12 +68,16 @@ button.normal:hover {
 }
 
 button.primary {
-  background-color: var(--color-accent);
+  background-color: var(--color-primary);
   color: var(--color-secondary);
   font-family: 'montserrat-700';
 }
 
 button.primary:hover {
-  background-color: var(--color-accent-hover);
+  background-color: var(--color-primary-hover);
   transition: var(--transition-button);
+}
+
+svg {
+  display: flex;
 }

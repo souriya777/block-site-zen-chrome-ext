@@ -4,50 +4,8 @@
   import { getOptionsUrl } from '@common/js/chrome-utils';
   import { extractDomain } from '@common/js/string-utils';
   import Headband from '@common/lib/Headband.svelte';
-
-  const IMGS = [
-    {
-      img: 'old-man.jpeg',
-      credit: `Photo by <a href="https://unsplash.com/fr/@alesdusa?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Ales Dusa</a> on <a href="https://unsplash.com/fr/photos/photo-en-niveaux-de-gris-dun-homme-en-veste-noire-7SXZlKDj22E?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Unsplash</a>
-  `,
-    },
-    {
-      img: 'patrick-smokes.jpg',
-      credit: `Photo by <a href="https://unsplash.com/fr/@worldsbetweenlines?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Patrick Hendry</a> on <a href="https://unsplash.com/fr/photos/uomo-che-fuma-sigaretta-jCimF7LYlKE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Unsplash</a>
-  `,
-    },
-    {
-      img: 'jose-look.jpg',
-      credit: `Photo by <a href="https://unsplash.com/fr/@jcmu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Jose Murillo</a> on <a href="https://unsplash.com/fr/photos/foto-em-tons-de-cinza-de-homem-usando-gorro-em-frente-a-parede-de-concreto-e-entre-duas-plantas-de-folhas-lineares-MlyYDrdR8UU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Unsplash</a>
-  `,
-    },
-  ];
-  const MANTRAS = [
-    {
-      quote: `Focusing is about saying No.`,
-      author: 'Steve Jobs',
-    },
-    {
-      quote: `Practice is the best of all instructos.`,
-      author: 'Publilius Syrus',
-    },
-    {
-      quote: `Knowledge will give you power, but character respect.`,
-      author: 'Bruce Lee',
-    },
-    {
-      quote: `Powerful indeed is the empire of habits.`,
-      author: 'Publilius Syrus',
-    },
-    {
-      quote: `No gains without pains.`,
-      author: 'Benjamin Franklin',
-    },
-    {
-      quote: `Lost time is never found again.`,
-      author: 'Benjamin Franklin',
-    },
-  ];
+  import FOCUS_IMGS from '@common/js/FOCUS_IMGS';
+  import FOCUS_MANTRAS from '@common/js/FOCUS_MANTRAS';
 
   let url;
 
@@ -55,13 +13,13 @@
     (result) => (url = extractDomain(result['currentUrl'])),
   );
 
-  $: indexMantra = Math.floor(Math.random() * MANTRAS.length);
-  $: quote = MANTRAS.at(indexMantra).quote;
-  $: author = MANTRAS.at(indexMantra).author;
+  $: indexMantra = Math.floor(Math.random() * FOCUS_MANTRAS.length);
+  $: quote = FOCUS_MANTRAS.at(indexMantra).quote;
+  $: author = FOCUS_MANTRAS.at(indexMantra).author;
 
-  $: indexImg = Math.floor(Math.random() * IMGS.length);
-  $: img = IMGS.at(indexImg).img;
-  $: credit = IMGS.at(indexImg).credit;
+  $: indexImg = Math.floor(Math.random() * FOCUS_IMGS.length);
+  $: img = FOCUS_IMGS.at(indexImg).img;
+  $: credit = FOCUS_IMGS.at(indexImg).credit;
 
   function gotoOptions() {
     window.location.href = getOptionsUrl();
@@ -99,7 +57,7 @@
   }
 
   :global(.credit a:hover) {
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
 
   .background {
@@ -116,7 +74,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    color: var(--color-primary);
+    color: var(--color-on-primary);
   }
 
   .content {
@@ -143,7 +101,7 @@
   }
 
   .url {
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
 
   .credit {

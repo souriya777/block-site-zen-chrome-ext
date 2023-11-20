@@ -4,14 +4,15 @@
   import PlusCircle from '@common/lib/PlusCircle.svelte';
   import Input from '@options/lib/Input.svelte';
   import { isValidUrl } from '@common/js/string-utils';
+  import { getTimestamp } from '@common/js/svelte-utils';
 
   const dispatch = createEventDispatcher();
   let currentUrl = '';
   let errorMsg;
   let timestamp;
 
-  function handleChangeUrl(e) {
-    currentUrl = e.target.value;
+  function handleChangeUrl(value) {
+    currentUrl = value;
 
     if (errorMsg) {
       if (isValidUrl(currentUrl)) {
@@ -23,7 +24,7 @@
   function handleAddUrl() {
     if (!isValidUrl(currentUrl)) {
       errorMsg = 'url is invalid';
-      timestamp = new Date().getTime();
+      timestamp = getTimestamp();
       return;
     }
 
@@ -40,7 +41,7 @@
     placeholder="facebook.com"
     size={40}
     value={currentUrl}
-    handleChange={handleChangeUrl}
+    callbackValue={handleChangeUrl}
     {errorMsg}
     {timestamp}
   >

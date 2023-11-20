@@ -29,6 +29,7 @@
   }
 
   .options {
+    font-size: 14px;
     /* max-width: var(--max-width-page-options); */
   }
 </style>
