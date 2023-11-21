@@ -16,13 +16,6 @@ OPTIONS
 - feat(interval): add effects
 - refactor MOVE ALL `:global`
 
-```
-:global(.logo svg) {
-    height: 32px;
-    width: 32px;
-  }
-```
-
 - refactor
 
 ```

@@ -7,6 +7,8 @@
   --color-accent-2: #bf6a95;
   --color-accent-3: #ff45a2;
   --color-accent-4: #fc007e;
+  --color-accent-transparent: #ff69b444;
+  --color-accent-transparent-2: #ff69b477;
 
 
   --primary-60: #fff;
@@ -27,7 +29,7 @@
   // --background-color-tertiary: #555;
 
   --height-input: 40px;
-  --size-icon: 30px;
+  --size-icon: 34px;
   --max-width-page-options: 900px;
   --border-radius-button: 6px;
   --transition-button: all ease 300ms;
@@ -110,23 +112,14 @@ button.icon {
   align-items: center;
   height: var(--size-icon);
   width: var(--size-icon);
-  background-color: var(--color-secondary);
+  background-color: var(--color-accent-transparent);
+  fill: var(--color-accent);
   cursor: pointer;
 
-  &.secondary {
-    background-color: transparent;
-
-    &:hover {
-      background-color: var(--color-discret);
-      fill: var(--color-primary);
-    }
+  &:hover {
+    background-color: var(--color-accent-transparent-2);
   }
-}
 
-button.icon:hover {
-  background-color: var(--color-secondary-lighter);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  transition: var(--transition-button);
 }
 
 button .summary {
