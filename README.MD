@@ -7,6 +7,7 @@
 OPTIONS
 
 - refactor(color-system): make it coherent
+  -- determine color scale `--color-secondary-lighter`
   -- focus.html
   -- popup.html
   -- options.html

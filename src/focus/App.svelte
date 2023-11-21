@@ -32,13 +32,13 @@
     <Headband>
       <span slot="title"> This site is blocked by BlockSiteZen </span>
       <span slot="action">
-        <button class="normal" on:click={gotoOptions}>Go settings</button>
+        <button class="normal secondary" on:click={gotoOptions}>Go settings</button>
       </span>
     </Headband>
     <div class="content">
       <div class="mantra">{quote}</div>
       <div class="author">{author}</div>
-      <div class="reason">
+      <div class="question">
         Will <span class="url">{url}</span> help you achieve your goals ?
       </div>
     </div>
@@ -48,8 +48,9 @@
 </main>
 
 <style>
-  :global(body) {
+  main {
     font-family: 'montserrat-400', sans-serif;
+    color: var(--color-on-primary);
   }
 
   :global(.credit a) {
@@ -57,7 +58,7 @@
   }
 
   :global(.credit a:hover) {
-    color: var(--color-primary);
+    color: var(--color-accent);
   }
 
   .background {
@@ -74,7 +75,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    color: var(--color-on-primary);
   }
 
   .content {
@@ -84,24 +84,27 @@
 
   .mantra {
     font-family: 'montserrat-700';
-    font-size: 80px;
+    font-size: var(--step-5);
     word-spacing: 4px;
     line-height: 1.1;
     overflow-wrap: break-word;
   }
 
   .author {
-    font-size: 16px;
+    margin-block-start: 18px;
+    font-size: var(--step--1);
   }
 
-  .reason {
-    padding-block-start: 32px;
-    font-size: 22px;
+  .question {
+    padding-block-start: 60px;
+    font-size: var(--step-0);
     line-height: 1.2;
   }
 
   .url {
-    color: var(--color-primary);
+    padding-inline: 4px;
+    background-color: var(--color-primary);
+    color: var(--color-accent);
   }
 
   .credit {
@@ -109,5 +112,6 @@
     bottom: 10px;
     right: 10px;
     color: var(--color-discret);
+    font-size: var(--step--2);
   }
 </style>

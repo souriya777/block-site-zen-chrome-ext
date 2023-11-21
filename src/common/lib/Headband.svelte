@@ -8,7 +8,9 @@
     <span class="logo">
       <LogoSvg />
     </span>
-    <slot name="title" />
+    <span class="title">
+      <slot name="title" />
+    </span>
   </div>
   <slot name="action" />
 </div>
@@ -23,9 +25,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 16px 56px;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-size: 14px;
+    padding: var(--space-s) var(--space-xl);
+    background-color: var(--color-primary);
+    font-size: var(--step--1);
   }
 
   .info {

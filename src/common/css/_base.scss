@@ -1,10 +1,22 @@
 :root {
-  --color-primary: #ff69b4;
-  --color-on-primary: #fff;
-  --color-secondary: #8f8e8e;
-  --color-secondary-lighter: #9e9d9d;
-  --color-on-secondary: #fff;
+  --color-primary: #121212; // google recommendation (not true black)
+  --color-secondary: #fff;
+  --color-accent: #ff69b4;
+  --color-on-primary: var(--color-secondary);
+  --color-on-accent: var(--color-secondary);
+  --color-accent-hover: #bf6a95;
+
+
+  --primary-60: #fff;
+  --secondary-30: #ff69b4;
+  --accent-10: #69ffb4;
   --color-discret: #cccccc;
+  --old-color-primary: #ff69b4;
+  --old-color-on-primary: #fff;
+  --old-color-FIXME: #69ffb4;
+  --old-color-secondary: #8f8e8e;
+  --old-color-secondary-lighter: #9e9d9d;
+  --old-color-on-secondary: #fff;
   // --color-primary-hover: #ff87c3;
   // --color-error: #d93025;
   // --color-primary-alternative: #000;
@@ -19,6 +31,31 @@
   --transition-button: all ease 300ms;
 }
 
+/* @link https://utopia.fyi/type/calculator?c=768,20,1.2,1240,22,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+  --step--2: clamp(0.7738rem, 1.0217rem + -0.3199vw, 0.8681rem);
+  --step--1: clamp(1.0313rem, 1.0592rem + -0.036vw, 1.0419rem);
+  --step-0: clamp(1.25rem, 1.0466rem + 0.4237vw, 1.375rem);
+  --step-1: clamp(1.5rem, 0.958rem + 1.1292vw, 1.8331rem);
+  --step-2: clamp(1.8rem, 0.7536rem + 2.1801vw, 2.4431rem);
+  --step-3: clamp(2.16rem, 0.3753rem + 3.7182vw, 3.2569rem);
+  --step-4: clamp(2.5919rem, -0.2546rem + 5.9301vw, 4.3412rem);
+  --step-5: clamp(3.1106rem, -1.244rem + 9.072vw, 5.7869rem);
+}
+
+/* @link https://utopia.fyi/space/calculator?c=768,20,1.5,1240,22,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+  --space-3xs: clamp(0.3125rem, 0.2108rem + 0.2119vw, 0.375rem);
+  --space-2xs: clamp(0.625rem, 0.5233rem + 0.2119vw, 0.6875rem);
+  --space-xs: clamp(0.9375rem, 0.7341rem + 0.4237vw, 1.0625rem);
+  --space-s: clamp(1.25rem, 1.0466rem + 0.4237vw, 1.375rem);
+  --space-m: clamp(1.875rem, 1.5699rem + 0.6356vw, 2.0625rem);
+  --space-l: clamp(2.5rem, 2.0932rem + 0.8475vw, 2.75rem);
+  --space-xl: clamp(3.75rem, 3.1398rem + 1.2712vw, 4.125rem);
+  --space-2xl: clamp(5rem, 4.1864rem + 1.6949vw, 5.5rem);
+  --space-3xl: clamp(7.5rem, 6.2797rem + 2.5424vw, 8.25rem);
+}
+
 ul {
   list-style: none;
   padding-inline-start: 0;
@@ -27,16 +64,32 @@ ul {
 
 button {
   color: inherit;
+  transition: all ease 250ms;
 }
 
 button.normal {
-  border: none;
   padding: 8px 20px;
   border-radius: var(--border-radius-button);
-  background-color: var(--color-secondary);
-  color: var(--color-on-secondary);
   cursor: pointer;
-  transition: background-color ease 300ms;
+}
+
+button.primary {
+  // border: none;
+  // background-color: var(--color-secondary);
+  // color: var(--color-on-secondary);
+  // transition: background-color ease 300ms;
+}
+
+button.secondary {
+  border: 2px solid var(--color-accent);
+  background-color: transparent;
+  color: var(--color-accent);
+  font-family: 'montserrat-700';
+
+  &:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-on-accent);
+  }
 }
 
 button.icon {
@@ -61,8 +114,8 @@ button.icon {
 }
 
 button.icon:hover,
-button.normal:hover {
-  background-color: var(--color-discret);
+button.normal.primary:hover {
+  background-color: var(--color-secondary-lighter);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   transition: var(--transition-button);
 }
