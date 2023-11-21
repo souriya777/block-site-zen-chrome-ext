@@ -42,14 +42,16 @@
 </script>
 
 <main>
-  <Headband>
-    <span slot="title">BlockSiteZen</span>
-    <span slot="action">
-      <button class="icon" on:click|preventDefault={openParams}>
-        <SettingsSvg />
-      </button>
-    </span>
-  </Headband>
+  <div class="my-headband">
+    <Headband>
+      <span slot="title">BlockSiteZen</span>
+      <span slot="action">
+        <button class="icon" on:click|preventDefault={openParams}>
+          <SettingsSvg />
+        </button>
+      </span>
+    </Headband>
+  </div>
 
   <div class="content">
     {#if isPageValid}
@@ -57,7 +59,10 @@
         <span class="url">{domain}</span>is not blocked.
       </div>
       <div class="action">
-        <button class="normal primary" on:click={blockSite}>Block this site</button>
+        <button class="normal primary" on:click={blockSite}>
+          <span class="summary">Block!</span>
+          <span class="detail">Block this site</span>
+        </button>
       </div>
     {:else}
       <div class="msg">Unavailable on this page.</div>
@@ -68,11 +73,19 @@
 <style>
   :root {
     --padding-inline: 10px;
+    --translate-button-summary: -30px;
+    --translate-button-detail: 30px;
+  }
+
+  :global(main .my-headband .headband) {
+    padding: var(--space-3xs) var(--space-2xs);
   }
 
   main {
     width: 280px;
-    background-color: var(--background-color-secondary);
+  }
+
+  .my-headband {
     color: var(--color-on-primary);
   }
 
@@ -84,7 +97,7 @@
   }
 
   .url {
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-family: 'montserrat-700';
   }
 

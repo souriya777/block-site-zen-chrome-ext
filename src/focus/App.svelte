@@ -102,7 +102,7 @@
   }
 
   .url {
-    padding-inline: 4px;
+    padding: 0 4px 2px;
     background-color: var(--color-primary);
     color: var(--color-accent);
   }

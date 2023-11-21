@@ -4,14 +4,12 @@
 </script>
 
 <div class="headband">
-  <div class="info">
-    <span class="logo">
-      <LogoSvg />
-    </span>
-    <span class="title">
-      <slot name="title" />
-    </span>
-  </div>
+  <span class="logo">
+    <LogoSvg />
+  </span>
+  <span class="title">
+    <slot name="title" />
+  </span>
   <slot name="action" />
 </div>
 
@@ -28,14 +26,5 @@
     padding: var(--space-s) var(--space-xl);
     background-color: var(--color-primary);
     font-size: var(--step--1);
-  }
-
-  .info {
-    display: flex;
-    align-items: center;
-  }
-
-  .info .logo {
-    margin-inline-end: 14px;
   }
 </style>

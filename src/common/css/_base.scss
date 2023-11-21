@@ -4,7 +4,9 @@
   --color-accent: #ff69b4;
   --color-on-primary: var(--color-secondary);
   --color-on-accent: var(--color-secondary);
-  --color-accent-hover: #bf6a95;
+  --color-accent-2: #bf6a95;
+  --color-accent-3: #ff45a2;
+  --color-accent-4: #fc007e;
 
 
   --primary-60: #fff;
@@ -63,31 +65,39 @@ ul {
 }
 
 button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
   color: inherit;
   transition: all ease 250ms;
+  transition-property: background-color, color;
 }
 
 button.normal {
   padding: 8px 20px;
+  border: 2px solid var(--color-accent);
   border-radius: var(--border-radius-button);
+  font-family: 'montserrat-700';
   cursor: pointer;
 }
 
 button.primary {
-  // border: none;
-  // background-color: var(--color-secondary);
-  // color: var(--color-on-secondary);
-  // transition: background-color ease 300ms;
+  background-color: var(--color-accent-3);
+  color: var(--color-on-accent);
+
+  &:hover {
+    background-color: var(--color-accent-4);
+  }
 }
 
 button.secondary {
-  border: 2px solid var(--color-accent);
   background-color: transparent;
   color: var(--color-accent);
-  font-family: 'montserrat-700';
 
   &:hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-accent-2);
     color: var(--color-on-accent);
   }
 }
@@ -113,22 +123,28 @@ button.icon {
   }
 }
 
-button.icon:hover,
-button.normal.primary:hover {
+button.icon:hover {
   background-color: var(--color-secondary-lighter);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   transition: var(--transition-button);
 }
 
-button.primary {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  font-family: 'montserrat-700';
+button .summary {
+  position: absolute;
+  transform: translateY(var(--translate-button-summary));
 }
 
-button.primary:hover {
-  background-color: var(--color-primary-hover);
-  transition: var(--transition-button);
+button .summary,
+button .detail {
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 250ms;
+}
+
+button:hover .summary {
+  transform: translateY(0);
+}
+
+button:hover .detail {
+  transform: translateY(var(--translate-button-detail));
 }
 
 svg {

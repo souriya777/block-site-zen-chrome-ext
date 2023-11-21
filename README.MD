@@ -11,6 +11,7 @@ OPTIONS
   -- focus.html
   -- popup.html
   -- options.html
+
 - feat(interval): design interval
 - feat(interval): add effects
 - refactor MOVE ALL `:global`
