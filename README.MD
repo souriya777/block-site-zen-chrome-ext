@@ -7,11 +7,7 @@
 OPTIONS
 
 - refactor(color-system): make it coherent
-  -- determine color scale `--color-secondary-lighter`
-  -- focus.html
-  -- popup.html
   -- options.html
-
 - feat(interval): design interval
 - feat(interval): add effects
 - refactor MOVE ALL `:global`

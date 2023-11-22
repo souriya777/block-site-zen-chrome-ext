@@ -6,9 +6,14 @@
   import SettingsSvg from '@common/lib/SettingsSvg.svelte';
   import Headband from '@common/lib/Headband.svelte';
 
+  const NOT_BLOCKED_MSG = 'is not blocked.';
+  const BLOCKED_MSG = 'is blocked 🎉.';
+
   let url;
   let domain;
+  let success = false;
   $: isPageValid = isValidUrl(url);
+  $: message = success ? BLOCKED_MSG : NOT_BLOCKED_MSG;
 
   chrome.runtime.sendMessage(
     {
@@ -29,8 +34,13 @@
   }
 
   async function blockSite() {
+    if (success) {
+      closeCurrentTab();
+      return;
+    }
+
     addToBlacklist(domain);
-    closeCurrentTab();
+    success = true;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -56,12 +66,22 @@
   <div class="content">
     {#if isPageValid}
       <div class="msg">
-        <span class="url">{domain}</span>is not blocked.
+        <span class="url">
+          {domain}
+        </span>
+        <span class="msg" class:success>
+          {message}
+        </span>
       </div>
       <div class="action">
-        <button class="normal primary" on:click={blockSite}>
-          <span class="summary">Block!</span>
-          <span class="detail">Block this site</span>
+        <button class="normal primary" class:button__success={success} on:click={blockSite}>
+          {#if success}
+            <span class="summary">Close!</span>
+            <span class="detail">Close this page</span>
+          {:else}
+            <span class="summary">Block!</span>
+            <span class="detail">Block this site</span>
+          {/if}
         </button>
       </div>
     {:else}
@@ -116,5 +136,13 @@
 
   .content {
     padding-inline: var(--padding-inline);
+  }
+
+  .success {
+    background-color: var(--color-success);
+  }
+
+  .button__success {
+    border-color: var(--color-success);
   }
 </style>
