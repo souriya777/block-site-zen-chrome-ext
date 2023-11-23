@@ -93,8 +93,6 @@
 <style>
   :root {
     --padding-inline: 10px;
-    --translate-button-summary: -30px;
-    --translate-button-detail: 30px;
   }
 
   :global(main .my-headband .headband) {

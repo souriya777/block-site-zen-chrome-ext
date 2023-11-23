@@ -36,9 +36,9 @@
         {#each $blacklist as url}
           <li>
             <div class="url">{url}</div>
-            <button class="icon primary" on:click={() => removeUrlFromBlacklist(url)}
-              ><BinSvg /></button
-            >
+            <button class="icon primary" on:click={() => removeUrlFromBlacklist(url)}>
+              <BinSvg />
+            </button>
           </li>
         {/each}
       {/if}

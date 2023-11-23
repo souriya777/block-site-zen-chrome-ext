@@ -49,7 +49,10 @@
       <PlusCircle />
     </span>
   </Input>
-  <button class="primary normal" on:click={handleAddUrl}>add</button>
+  <button class="normal primary" on:click={handleAddUrl}>
+    <span class="summary">Add!</span>
+    <span class="detail">Add to blacklist</span>
+  </button>
 </form>
 
 <style>

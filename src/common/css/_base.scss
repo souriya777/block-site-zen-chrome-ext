@@ -3,15 +3,17 @@
   --color-secondary: #fff;
   --color-accent: #ff69b4;
   --color-on-primary: var(--color-secondary);
-  --color-on-accent: var(--color-secondary);
+  --color-on-accent: var(--color-primary);
   --color-accent-2: #bf6a95;
   --color-accent-3: #ff45a2;
   --color-accent-4: #fc007e;
   --color-accent-transparent: #ff69b444;
   --color-accent-transparent-2: #ff69b477;
   --color-success: #69ffb4;
-  --color-success-2: #00fc7e
+  --color-error: #d93025;
 
+  --translate-button-summary: -30px;
+  --translate-button-detail: 30px;
 
   --primary-60: #fff;
   --secondary-30: #ff69b4;
@@ -24,7 +26,6 @@
   --old-color-secondary-lighter: #9e9d9d;
   --old-color-on-secondary: #fff;
   // --color-primary-hover: #ff87c3;
-  // --color-error: #d93025;
   // --color-primary-alternative: #000;
   // --color-secondary: #333;
   // --background-color-secondary: #333;
@@ -81,7 +82,7 @@ button {
 
 button.normal {
   padding: 8px 20px;
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--color-accent-3);
   border-radius: var(--border-radius-button);
   font-family: 'montserrat-700';
   cursor: pointer;
@@ -93,6 +94,7 @@ button.primary {
 
   &:hover {
     background-color: var(--color-accent-4);
+    border-color: var(--color-accent-4);
   }
 }
 
