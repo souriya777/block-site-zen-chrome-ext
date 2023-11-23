@@ -1,6 +1,10 @@
 <script>
   import { onMount } from 'svelte';
   import Interval from '@options/lib/Interval.svelte';
+  import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
+  import PlusCircle from '@common/lib/PlusCircle.svelte';
+
+  export let timestamp;
 
   let monday = false;
   let tuesday = false;
@@ -34,13 +38,16 @@
   <legend>interval : </legend>
   {#each intervals as interval, i (interval.id)}
     <div>
-      <Interval id={interval.id} value="09:00" />
+      <Interval id={interval.id} value="09:00" {timestamp} />
+      <Interval id={interval.id} value="18:00" {timestamp} />
       {#if i > 0}
         <button on:click={() => removeInterval(interval.id)}>➖</button>
       {/if}
     </div>
   {/each}
   <button on:click={addInterval}>➕</button>
+
+  <PlusCircle /><MinusCircleSvg />
 </fieldset>
 
 <fieldset>

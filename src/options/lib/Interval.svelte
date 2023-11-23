@@ -1,11 +1,20 @@
 <script>
-  import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
-  import PlusCircle from '@common/lib/PlusCircle.svelte';
   import TimeSvg from '@common/lib/TimeSvg.svelte';
   import TriangleDownSvg from '@common/lib/TriangleDownSvg.svelte';
   import { onMount } from 'svelte';
 
   export let value;
+  export let timestamp;
+
+  let currentTimestamp;
+
+  $: if (timestamp !== currentTimestamp) {
+    if (checked) {
+      checked = false;
+    }
+
+    currentTimestamp = timestamp;
+  }
 
   const DEFAULT_HOURS = '09';
   const DEFAULT_MINUTES = '00';
@@ -15,6 +24,7 @@
 
   let hours = DEFAULT_HOURS;
   let minutes = DEFAULT_MINUTES;
+  let checked;
 
   $: time = `${hours}:${minutes}`;
 
@@ -34,19 +44,21 @@
 
     hours = newHours;
     minutes = newMinutes;
+
+    checked = false;
   }
 
   function scrollToSelected() {
     const elt = document.querySelector('button.selected');
     if (elt) {
-      elt.scrollIntoView();
+      elt.scrollIntoView({ block: 'start' });
     }
   }
 </script>
 
-<div class="interval">
+<div class="interval" on:click|stopPropagation={() => console.log('stop propagation')}>
   <label class="current">
-    <input type="checkbox" name="dropdownOpened" on:click={scrollToSelected} />
+    <input bind:checked type="checkbox" name="dropdownOpened" on:click={scrollToSelected} />
     <div class="current__time">
       <div class="current__icon">
         <TimeSvg />
@@ -76,9 +88,13 @@
     {/each}
   </ul>
 </div>
-<PlusCircle /><MinusCircleSvg />
 
 <style>
+  :root {
+    --transition-arrow: transform ease 450ms;
+    --transition-popin: all ease 400ms;
+  }
+
   .interval {
     position: relative;
     display: inline-block;
@@ -100,27 +116,33 @@
   }
 
   .current__time {
-    background-color: darkorange;
     display: flex;
     align-items: center;
   }
 
   .current__value {
-    background-color: hotpink;
+    margin-inline-start: 6px;
   }
 
   .current__arrow {
-    background-color: darkred;
+    transition: var(--transition-arrow);
+  }
+
+  .current__icon {
+    fill: var(--color-discret);
   }
 
   ul {
-    background-color: aquamarine;
     position: absolute;
-    height: calc(var(--height-input) * 5);
+    height: 0;
     width: 100%;
+    margin-block-start: 8px;
     overflow-y: scroll;
-    display: none;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--border-radius-button);
+    opacity: 0;
     z-index: 1;
+    transition: var(--transition-popin);
   }
 
   li {
@@ -128,7 +150,6 @@
     justify-content: center;
     align-items: center;
     height: var(--height-input);
-    border-bottom: 1px dashed red;
   }
 
   button {
@@ -136,22 +157,31 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    border: none;
     cursor: pointer;
   }
 
   button:hover {
-    background-color: blueviolet;
+    background-color: var(--color-accent-3);
+    font-family: 'montserrat-700';
   }
 
-  button.selected {
-    background-color: pink;
+  input[type='checkbox'] {
+    display: none;
   }
 
   input[type='checkbox']:checked ~ .current__arrow {
     transform: rotate(180deg);
+    transition: var(--transition-arrow);
   }
 
   label:has(input[type='checkbox']:checked) + ul {
-    display: block;
+    height: calc(var(--height-input) * 5);
+    opacity: 1;
+    transition: var(--transition-popin);
+  }
+
+  .selected {
+    background-color: var(--color-accent);
   }
 </style>

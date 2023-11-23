@@ -3,7 +3,16 @@
   import Schedule from '@options/lib/Schedule.svelte';
   import Headband from '@common/lib/Headband.svelte';
   import Blacklist from '@options/lib/Blacklist.svelte';
+  import { getTimestamp } from '@common/js/svelte-utils';
+
+  let timestamp;
+
+  function handleClick() {
+    timestamp = getTimestamp();
+  }
 </script>
+
+<svelte:window on:click={handleClick} />
 
 <main>
   <div class="options">
@@ -17,7 +26,7 @@
     <Blacklist />
 
     <h2>When ?</h2>
-    <Schedule />
+    <Schedule {timestamp} />
   </div>
 </main>
 

@@ -6,8 +6,7 @@
 
 OPTIONS
 
-- feat(interval): style interval
-- feat(interval): add effects
+- feat(interval): add rules on intervals
 - feat(interval): can select one ore more intervals
 - refactor
 
