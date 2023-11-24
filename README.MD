@@ -6,7 +6,7 @@
 
 OPTIONS
 
-- feat(interval): add rules on intervals
+-
 - feat(interval): can select one ore more intervals
 - refactor
 

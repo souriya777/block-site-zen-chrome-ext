@@ -33,12 +33,9 @@
 <style>
   main {
     height: 100%;
-    /* background-color: var(--background-color-tertiary);
-    color: var(--color-primary); */
   }
 
   .options {
     font-size: 14px;
-    /* max-width: var(--max-width-page-options); */
   }
 </style>

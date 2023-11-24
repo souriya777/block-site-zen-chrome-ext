@@ -1,10 +1,15 @@
 <script>
   import { onMount } from 'svelte';
-  import Interval from '@options/lib/Interval.svelte';
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
-  import PlusCircle from '@common/lib/PlusCircle.svelte';
+  import PlusCircleSvg from '@common/lib/PlusCircleSvg.svelte';
+  import Interval from './Interval.svelte';
 
   export let timestamp;
+
+  const START_HOURS = 9;
+  const START_MINUTES = 0;
+  const END_HOURS = 12;
+  const END_MINUTES = 0;
 
   let monday = false;
   let tuesday = false;
@@ -20,13 +25,37 @@
 
   function addInterval() {
     const uuid = crypto.randomUUID();
-    intervals = [...intervals, { id: uuid, component: Interval }];
-    console.log('add interval', uuid);
+    intervals = [
+      ...intervals,
+      {
+        id: uuid,
+        start: {
+          hours: START_HOURS,
+          minutes: START_MINUTES,
+        },
+        end: {
+          hours: END_HOURS,
+          minutes: END_MINUTES,
+        },
+      },
+    ];
+    console.log('add interval', uuid, intervals);
   }
 
   function removeInterval(uuid) {
     intervals = [...intervals.filter((item) => item?.id !== uuid)];
-    console.log('remove interval', uuid);
+    console.log('remove interval', uuid, intervals);
+  }
+
+  function updateInterval(customEvent) {
+    const { id, startHours, startMinutes, endHours, endMinutes } = customEvent.detail;
+    const interval = intervals.find((item) => item?.id === id);
+    interval['start'] = { hours: startHours, minutes: startMinutes };
+    interval['end'] = { hours: endHours, minutes: endMinutes };
+
+    intervals = [...intervals.filter((item) => item?.id !== id), { ...interval }];
+
+    console.log(intervals);
   }
 
   onMount(() => {
@@ -37,17 +66,24 @@
 <fieldset>
   <legend>interval : </legend>
   {#each intervals as interval, i (interval.id)}
-    <div>
-      <Interval id={interval.id} value="09:00" {timestamp} />
-      <Interval id={interval.id} value="18:00" {timestamp} />
+    <div class="schedule__interval">
+      <Interval
+        id={interval.id}
+        startHours={START_HOURS}
+        startMinutes={START_MINUTES}
+        endHours={END_HOURS}
+        endMinutes={END_MINUTES}
+        on:update={updateInterval}
+        {timestamp}
+      />
       {#if i > 0}
-        <button on:click={() => removeInterval(interval.id)}>➖</button>
+        <button on:click={() => removeInterval(interval.id)}>
+          <MinusCircleSvg />
+        </button>
       {/if}
     </div>
   {/each}
-  <button on:click={addInterval}>➕</button>
-
-  <PlusCircle /><MinusCircleSvg />
+  <button on:click={addInterval}><PlusCircleSvg /></button>
 </fieldset>
 
 <fieldset>
@@ -88,3 +124,9 @@
     <label for="sunday">S</label>
   </span>
 </fieldset>
+
+<style>
+  .schedule__interval {
+    display: flex;
+  }
+</style>
