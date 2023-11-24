@@ -44,8 +44,10 @@ function writableStorage(key, initialValue, isChromeStorage = false) {
     }
   };
   const updateFromChromeStorage = (changes) => {
-    const newValue = JSON.parse(changes[key]?.['newValue']);
-    set(newValue);
+    if (changes[key]?.['newValue']) {
+      const newValue = JSON.parse(changes[key]?.['newValue']);
+      set(newValue);
+    }
   };
 
   // LISTEN for changes in Storage

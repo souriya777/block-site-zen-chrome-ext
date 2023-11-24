@@ -1,15 +1,12 @@
 <script>
-  import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
+  import { intervals } from '@common/js/store';
+  import { initInterval } from '@common/js/interval-utils';
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
   import PlusCircleSvg from '@common/lib/PlusCircleSvg.svelte';
-  import Interval from './Interval.svelte';
+  import Interval from '@options/lib/Interval.svelte';
 
   export let timestamp;
-
-  const START_HOURS = 9;
-  const START_MINUTES = 0;
-  const END_HOURS = 12;
-  const END_MINUTES = 0;
 
   let monday = false;
   let tuesday = false;
@@ -19,70 +16,61 @@
   let saturday = false;
   let sunday = false;
 
-  let intervals = [];
-
   $: console.log(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
 
   function addInterval() {
-    const uuid = crypto.randomUUID();
-    intervals = [
-      ...intervals,
-      {
-        id: uuid,
-        start: {
-          hours: START_HOURS,
-          minutes: START_MINUTES,
-        },
-        end: {
-          hours: END_HOURS,
-          minutes: END_MINUTES,
-        },
-      },
-    ];
-    console.log('add interval', uuid, intervals);
+    const interval = initInterval();
+    intervals.update((arr) => [...arr, { ...interval }]);
   }
 
   function removeInterval(uuid) {
-    intervals = [...intervals.filter((item) => item?.id !== uuid)];
-    console.log('remove interval', uuid, intervals);
+    intervals.update((arr) => [...arr.filter((item) => item?.id !== uuid)]);
+    console.log('remove interval', uuid);
   }
 
   function updateInterval(customEvent) {
     const { id, startHours, startMinutes, endHours, endMinutes } = customEvent.detail;
-    const interval = intervals.find((item) => item?.id === id);
+
+    console.log(id, startHours, startMinutes, endHours, endMinutes);
+    const interval = get(intervals).find((item) => item?.id === id);
     interval['start'] = { hours: startHours, minutes: startMinutes };
     interval['end'] = { hours: endHours, minutes: endMinutes };
 
-    intervals = [...intervals.filter((item) => item?.id !== id), { ...interval }];
+    intervals.update((arr) => [...arr.filter((item) => item?.id !== id), { ...interval }]);
 
-    console.log(intervals);
+    console.log('update interval', id);
   }
 
-  onMount(() => {
-    addInterval();
-  });
+  function save() {
+    const interval = initInterval();
+    intervals.update((arr) => [...arr, { ...interval }]);
+    console.log('save');
+  }
 </script>
 
+storedIntervals:{JSON.stringify($intervals)}
 <fieldset>
   <legend>interval : </legend>
-  {#each intervals as interval, i (interval.id)}
-    <div class="schedule__interval">
-      <Interval
-        id={interval.id}
-        startHours={START_HOURS}
-        startMinutes={START_MINUTES}
-        endHours={END_HOURS}
-        endMinutes={END_MINUTES}
-        on:update={updateInterval}
-        {timestamp}
-      />
-      {#if i > 0}
-        <button on:click={() => removeInterval(interval.id)}>
-          <MinusCircleSvg />
-        </button>
-      {/if}
-    </div>
-  {/each}
+  {#if $intervals}
+    {#each $intervals as interval, i (interval.id)}
+      <div class="schedule__interval">
+        <Interval
+          id={interval.id}
+          startHours={interval?.start?.hours}
+          startMinutes={interval?.start?.minutes}
+          endHours={interval?.end?.hours}
+          endMinutes={interval?.end?.minutes}
+          on:update={updateInterval}
+          {timestamp}
+        />
+        {#if i > 0}
+          <button on:click={() => removeInterval(interval.id)}>
+            <MinusCircleSvg />
+          </button>
+        {/if}
+      </div>
+    {/each}
+  {/if}
   <button on:click={addInterval}><PlusCircleSvg /></button>
 </fieldset>
 
@@ -124,6 +112,8 @@
     <label for="sunday">S</label>
   </span>
 </fieldset>
+
+<button class="normal primary" on:click={save}>Save</button>
 
 <style>
   .schedule__interval {

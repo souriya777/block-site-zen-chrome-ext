@@ -6,22 +6,8 @@
 
 OPTIONS
 
--
-- feat(interval): can select one ore more intervals
-- refactor
-
-```
-:global(.input .error-msg svg) {
-    height: 16px;
-    width: 16px;
-    margin-inline-end: 4px;
-  }
-```
-
-- refactor MOVE ALL `:global`
-- design(options): refactor colors
-- feat(interval): save in store
 - feat(interval): detect in content.js
+- design(options): refactor colors
 - feat(popup): change message, when user add blocked url directly in options.html
 - feat(options): arrow down list (to indicate it is... a list)
 - add a logo for my extension

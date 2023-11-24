@@ -4,10 +4,13 @@ import { isValidUrl, extractDomain } from '@common/js/string-utils';
 import InvalidUrlError from '@common/js/InvalidUrlError';
 import AllreadyExistsUrlError from '@common/js/AllreadyExistsUrlError';
 
+/** @type {import('svelte/store').Writable<string[]>} */
 const blacklist = writableChromeStorage('blacklist', []);
+/** @type {import('svelte/store').Writable<import('@common/js/types').Interval[]>} */
+
+const intervals = writableChromeStorage('intervals', []);
 
 function addToBlacklist(url) {
-  console.log('🔴', url, isValidUrl(url));
   if (!isValidUrl(url)) {
     throw new InvalidUrlError(`${url} is invalid`);
   }
@@ -26,4 +29,4 @@ function isBlacklisted(url) {
   return get(blacklist)?.find((item) => item === urlToFind) != null;
 }
 
-export { blacklist, addToBlacklist, isBlacklisted };
+export { blacklist, intervals, addToBlacklist, isBlacklisted };
