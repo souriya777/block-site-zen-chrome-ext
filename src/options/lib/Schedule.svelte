@@ -1,29 +1,19 @@
 <script>
   import { get } from 'svelte/store';
   import { intervals, week } from '@common/js/store';
-  import { initInterval } from '@common/js/interval-utils';
+  import { createInterval } from '@common/js/interval-utils';
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
   import PlusCircleSvg from '@common/lib/PlusCircleSvg.svelte';
   import Interval from '@options/lib/Interval.svelte';
 
   export let timestamp;
 
-  // let monday = $week.monday;
-
-  // $: localWeek = get(week);
-
-  // $: monday = localWeek ? localWeek.monday : false;
-  // $: tuesday = false;
-  // $: wednesday = false;
-  // $: thursday = false;
-  // $: friday = false;
-  // $: saturday = false;
-  // $: sunday = false;
-
-  // $: console.log(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+  $: if ($intervals != null && $intervals.length === 0) {
+    intervals.set([{ ...createInterval() }]);
+  }
 
   function addInterval() {
-    const interval = initInterval();
+    const interval = createInterval();
     intervals.update((arr) => [...arr, { ...interval }]);
   }
 
@@ -52,9 +42,7 @@
   }
 
   function save() {
-    const interval = initInterval();
-    intervals.update((arr) => [...arr, { ...interval }]);
-    console.log('save');
+    console.log('TODO save');
   }
 </script>
 

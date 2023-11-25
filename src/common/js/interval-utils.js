@@ -6,7 +6,7 @@ const END_MINUTES = 0;
 /**
  * @returns {import('@common/js/types').Interval}
  */
-function initInterval() {
+function createInterval() {
   const item = {
     id: crypto.randomUUID(),
     start: {
@@ -22,4 +22,4 @@ function initInterval() {
   return { ...item };
 }
 
-export { START_HOURS, START_MINUTES, END_HOURS, END_MINUTES, initInterval };
+export { START_HOURS, START_MINUTES, END_HOURS, END_MINUTES, createInterval };
