@@ -1,6 +1,6 @@
 <script>
   import { get } from 'svelte/store';
-  import { intervals } from '@common/js/store';
+  import { intervals, week } from '@common/js/store';
   import { initInterval } from '@common/js/interval-utils';
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
   import PlusCircleSvg from '@common/lib/PlusCircleSvg.svelte';
@@ -8,15 +8,19 @@
 
   export let timestamp;
 
-  let monday = false;
-  let tuesday = false;
-  let wednesday = false;
-  let thursday = false;
-  let friday = false;
-  let saturday = false;
-  let sunday = false;
+  // let monday = $week.monday;
 
-  $: console.log(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+  // $: localWeek = get(week);
+
+  // $: monday = localWeek ? localWeek.monday : false;
+  // $: tuesday = false;
+  // $: wednesday = false;
+  // $: thursday = false;
+  // $: friday = false;
+  // $: saturday = false;
+  // $: sunday = false;
+
+  // $: console.log(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
 
   function addInterval() {
     const interval = initInterval();
@@ -41,6 +45,12 @@
     console.log('update interval', id);
   }
 
+  function updateWeek(e) {
+    const checked = e.target.checked;
+    const name = e.target.name;
+    week.update((current) => ({ ...current, [name]: checked }));
+  }
+
   function save() {
     const interval = initInterval();
     intervals.update((arr) => [...arr, { ...interval }]);
@@ -48,7 +58,7 @@
   }
 </script>
 
-storedIntervals:{JSON.stringify($intervals)}
+intervals:{JSON.stringify($intervals)}
 <fieldset>
   <legend>interval : </legend>
   {#if $intervals}
@@ -74,43 +84,51 @@ storedIntervals:{JSON.stringify($intervals)}
   <button on:click={addInterval}><PlusCircleSvg /></button>
 </fieldset>
 
+week:{JSON.stringify($week)}
 <fieldset>
   <legend>days :</legend>
 
-  <span>
-    <input type="checkbox" name="monday" id="monday" bind:checked={monday} />
-    <label for="monday">M</label>
-  </span>
+  {#if $week}
+    <span>
+      <input type="checkbox" name="monday" bind:checked={$week.monday} on:click={updateWeek} />
+      <label for="monday">M</label>
+    </span>
 
-  <span>
-    <input type="checkbox" name="tuesday" id="tuesday" bind:checked={tuesday} />
-    <label for="tuesday">T</label>
-  </span>
+    <span>
+      <input type="checkbox" name="tuesday" bind:checked={$week.tuesday} on:click={updateWeek} />
+      <label for="tuesday">T</label>
+    </span>
 
-  <span>
-    <input type="checkbox" name="wednesday" id="wednesday" bind:checked={wednesday} />
-    <label for="wednesday">W</label>
-  </span>
+    <span>
+      <input
+        type="checkbox"
+        name="wednesday"
+        bind:checked={$week.wednesday}
+        on:click={updateWeek}
+      />
+      <label for="wednesday">W</label>
+    </span>
 
-  <span>
-    <input type="checkbox" name="thursday" id="thursday" bind:checked={thursday} />
-    <label for="thursday">T</label>
-  </span>
+    <span>
+      <input type="checkbox" name="thursday" bind:checked={$week.thursday} on:click={updateWeek} />
+      <label for="thursday">T</label>
+    </span>
 
-  <span>
-    <input type="checkbox" name="friday" id="friday" bind:checked={friday} />
-    <label for="friday">F</label>
-  </span>
+    <span>
+      <input type="checkbox" name="friday" bind:checked={$week.friday} on:click={updateWeek} />
+      <label for="friday">F</label>
+    </span>
 
-  <span>
-    <input type="checkbox" name="saturday" id="saturday" bind:checked={saturday} />
-    <label for="saturday">S</label>
-  </span>
+    <span>
+      <input type="checkbox" name="saturday" bind:checked={$week.saturday} on:click={updateWeek} />
+      <label for="saturday">S</label>
+    </span>
 
-  <span>
-    <input type="checkbox" name="sunday" id="sunday" bind:checked={sunday} />
-    <label for="sunday">S</label>
-  </span>
+    <span>
+      <input type="checkbox" name="sunday" bind:checked={$week.sunday} on:click={updateWeek} />
+      <label for="sunday">S</label>
+    </span>
+  {/if}
 </fieldset>
 
 <button class="normal primary" on:click={save}>Save</button>

@@ -9,3 +9,13 @@ export type Interval = {
     minutes: number;
   };
 };
+
+export type Week = {
+  monday: boolean;
+  tuesday: boolean;
+  wednesday: boolean;
+  thursday: boolean;
+  friday: boolean;
+  saturday: boolean;
+  sunday: boolean;
+};
