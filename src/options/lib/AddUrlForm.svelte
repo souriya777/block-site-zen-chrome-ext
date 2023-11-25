@@ -1,10 +1,10 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { addToBlacklist } from '@common/js/store';
   import PlusCircle from '@common/lib/PlusCircleSvg.svelte';
   import Input from '@options/lib/Input.svelte';
   import { isValidUrl } from '@common/js/string-utils';
   import { getTimestamp } from '@common/js/svelte-utils';
+  import { addToBlacklist } from '@common/js/blacklist-utils';
 
   const dispatch = createEventDispatcher();
   let currentUrl = '';

@@ -6,7 +6,7 @@
 
 OPTIONS
 
-- feat(interval): detect in content.js
+- -- use local day or lib ?
 - design(options): refactor colors
 - refactor color CSS variables name
 - refacto(chrome-api): externalize "send message" code

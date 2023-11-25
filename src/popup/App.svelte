@@ -1,8 +1,8 @@
 <script>
   import '@common/css/main.scss';
-  import { addToBlacklist } from '@common/js/store';
   import { closeCurrentTab, currentUrlAndFavicon, getOptionsUrl } from '@common/js/chrome-utils';
   import { extractDomain, isValidUrl } from '@common/js/string-utils';
+  import { addToBlacklist } from '@common/js/blacklist-utils';
   import SettingsSvg from '@common/lib/SettingsSvg.svelte';
   import Headband from '@common/lib/Headband.svelte';
 
