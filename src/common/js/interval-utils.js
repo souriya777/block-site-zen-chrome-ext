@@ -3,14 +3,14 @@ const START_MINUTES = 0;
 const END_HOURS = 12;
 const END_MINUTES = 0;
 
-const DAY_POSITION_LABEL = {
-  0: 'monday',
-  1: 'tuesday',
-  2: 'wednesday',
-  3: 'thursday',
-  4: 'friday',
-  5: 'saturday',
-  6: 'sunday',
+const UTC_DAY_POSITION_LABEL = {
+  0: 'sunday',
+  1: 'monday',
+  2: 'tuesday',
+  3: 'wednesday',
+  4: 'thursday',
+  5: 'friday',
+  6: 'saturday',
 };
 
 /**
@@ -63,7 +63,7 @@ function isInBlockedPeriod(week, intervals) {
   const today = new Date();
   const hours = today.getHours();
   const minutes = today.getMinutes();
-  const dayLabel = DAY_POSITION_LABEL[today.getDay()];
+  const dayLabel = UTC_DAY_POSITION_LABEL[today.getUTCDay()];
   const dayValid = week[dayLabel];
 
   console.log(week, dayLabel, 'dayValid?', dayValid);

@@ -6,7 +6,6 @@
 
 OPTIONS
 
-- -- use local day or lib ?
 - design(options): refactor colors
 - refactor color CSS variables name
 - refacto(chrome-api): externalize "send message" code
@@ -17,6 +16,7 @@ OPTIONS
 - ci(prod): deploy to PROD
 - remove chrome.storage eslint error
 - transition svelte ?
+- remove logs from content.js
 - move all "utils" in gist
 
 # RUN

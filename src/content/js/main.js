@@ -9,25 +9,17 @@ console.log('🙏CONTENT.JS...');
 ChromeLocalStorage.get('blacklist').then(() => {
   const blacklisted = isBlacklisted(window.location.href);
   console.log('blacklisted?', blacklisted);
+  const inBlockedPeriod = isInBlockedPeriod(get(week), get(intervals));
   console.log('in blocked period?', isInBlockedPeriod(get(week), get(intervals)));
-  // document.body.style.borderColor = 'hotpink';
-  // document.body.style.borderWidth = '4px';
-  // document.body.style.borderStyle = 'dashed';
 
-  if (blacklisted) {
-    console.log('🔴');
-    // ChromeLocalStorage.set('currentUrl', window.location.href);
+  if (blacklisted && inBlockedPeriod) {
+    ChromeLocalStorage.set('currentUrl', window.location.href);
 
-    // const optionUrl = 'chrome-extension://' + chrome.runtime.id + '/focus.html';
-    // console.log(optionUrl);
-    // chrome.runtime.sendMessage({ redirect: optionUrl });
+    const optionUrl = 'chrome-extension://' + chrome.runtime.id + '/focus.html';
+    console.log(optionUrl);
+    chrome.runtime.sendMessage({ redirect: optionUrl });
   }
 });
-
-// get current url
-// check if it's in blacklist
-// if yes, display image & mantra
-// style it
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(
