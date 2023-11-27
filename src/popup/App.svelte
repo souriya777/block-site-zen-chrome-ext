@@ -2,7 +2,7 @@
   import '@common/css/main.scss';
   import { closeCurrentTab, currentUrlAndFavicon, getOptionsUrl } from '@common/js/chrome-utils';
   import { extractDomain, isValidUrl } from '@common/js/string-utils';
-  import { addToBlacklist } from '@common/js/blacklist-utils';
+  import { addToBlacklist, isBlacklisted } from '@common/js/blacklist-utils';
   import SettingsSvg from '@common/lib/SettingsSvg.svelte';
   import Headband from '@common/lib/Headband.svelte';
 
@@ -14,6 +14,9 @@
   let success = false;
   $: isPageValid = isValidUrl(url);
   $: message = success ? BLOCKED_MSG : NOT_BLOCKED_MSG;
+  $: if (isBlacklisted(url)) {
+    success = true;
+  }
 
   chrome.runtime.sendMessage(
     {

@@ -43,13 +43,13 @@
     bottom: 0;
     display: none;
     min-width: var(--width-snackbar);
-    height: var(--height-snackbar);
+    min-height: var(--height-snackbar);
     margin-block-end: 10px;
-    padding-inline: 16px;
+    padding: 6px 16px;
     border-radius: 4px;
     overflow: hidden;
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
+    background-color: var(--color-snackbar);
+    color: var(--color-snackbar-text);
     transform: translateX(-50%);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     animation: grow ease 200ms;
@@ -71,10 +71,11 @@
 
   button {
     border: none;
+    min-width: 48px;
     padding: unset;
     margin-inline-start: 20px;
     background: none;
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-family: 'montserrat-700';
     cursor: pointer;
   }

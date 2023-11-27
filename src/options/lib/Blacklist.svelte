@@ -1,5 +1,6 @@
 <script>
   import { blacklist } from '@common/js/store';
+  import { extractDomain } from '@common/js/string-utils';
   import BinSvg from '@common/lib/BinSvg.svelte';
   import Snackbar from '@common/lib/Snackbar.svelte';
   import AddUrlForm from '@options/lib/AddUrlForm.svelte';
@@ -15,7 +16,7 @@
   }
 
   function showSucessMessage(url) {
-    successMessage = `${url} was added with success 🎉`;
+    successMessage = `${extractDomain(url)} was added with success 🎉`;
   }
 </script>
 
@@ -32,7 +33,7 @@
   </div>
   <div class="content">
     <ul>
-      {#if $blacklist}
+      {#if $blacklist && $blacklist.length > 0}
         {#each $blacklist as url}
           <li>
             <div class="url">{url}</div>
@@ -41,6 +42,10 @@
             </button>
           </li>
         {/each}
+      {:else}
+        <li>
+          <p class="empty">No URL was blacklisted.</p>
+        </li>
       {/if}
     </ul>
   </div>
@@ -94,11 +99,16 @@
     max-height: 400px;
     padding: 0 var(--padding-container);
     overflow-y: scroll;
-    /* border-bottom-left-radius: var(--border-radius-container);
-    border-bottom-right-radius: var(--border-radius-container); */
   }
 
   .add {
     display: flex;
+  }
+
+  .empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-style: italic;
   }
 </style>

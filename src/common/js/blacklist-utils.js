@@ -19,6 +19,10 @@ function addToBlacklist(url) {
 }
 
 function isBlacklisted(url) {
+  if (!url) {
+    return false;
+  }
+
   const urlToFind = extractDomain(url);
   return get(blacklist)?.find((item) => item === urlToFind) != null;
 }
