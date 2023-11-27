@@ -1,7 +1,6 @@
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete' && /^http/.test(tab.url)) {
-    console.log('background.js 😎 ', tab.url);
-
+    // console.log('background.js 😎 ', tab.url);
     // inject content.js
     // chrome.scripting
     //   .executeScript({
@@ -11,12 +10,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     //   .then(() => {
     //     console.log('INJECTED THE CONTENT SCRIPT 🔥🔥🔥');
     //     let url = '';
-
     //     (async () => {
     //       const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-
     //       url = tab.url;
-
     //       const response = await chrome.tabs.sendMessage(tab.id, {
     //         greeting: 'hello',
     //         url,
@@ -24,7 +20,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     //       // do something with response here, not outside the function
     //       console.log('🟢', response);
     //     })();
-
     //     chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     //       chrome.runtime.sendMessage({ data: 'datax', url }, function (response) {});
     //       //alert(message.data);

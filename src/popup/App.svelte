@@ -18,19 +18,19 @@
     success = true;
   }
 
-  chrome.runtime.sendMessage(
-    {
-      data: 'Handshake',
-    },
+  // chrome.runtime.sendMessage(
+  //   {
+  //     data: 'Handshake',
+  //   },
 
-    function (response) {
-      console.log('handshake', response);
-    },
-  );
+  //   function (response) {
+  //     console.log('handshake', response);
+  //   },
+  // );
 
-  chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    console.log('🟢listener', message.data, message?.url);
-  });
+  // chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  //   console.log('🟢listener', message.data, message?.url);
+  // });
 
   function openParams() {
     window.open(getOptionsUrl(), '_blank');

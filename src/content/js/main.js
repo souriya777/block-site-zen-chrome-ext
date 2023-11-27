@@ -21,11 +21,11 @@ ChromeLocalStorage.get('blacklist').then(() => {
   }
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(
-    '🟢🟢🟢🟢🟢',
-    sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension',
-  );
-  console.log(request.url);
-  if (request.greeting === 'hello') sendResponse({ farewell: 'goodbye my friend 😎😎😎' });
-});
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//   console.log(
+//     '🟢🟢🟢🟢🟢',
+//     sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension',
+//   );
+//   console.log(request.url);
+//   if (request.greeting === 'hello') sendResponse({ farewell: 'goodbye my friend 😎😎😎' });
+// });
