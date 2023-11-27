@@ -14,7 +14,6 @@ OPTIONS
 - ci(prod): deploy to PROD
 
 - transition svelte ?
-- remove logs from content.js
 - move all "utils" in gist
 
 # RUN

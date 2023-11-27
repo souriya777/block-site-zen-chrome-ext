@@ -65,12 +65,9 @@ function isInBlockedPeriod(week, intervals) {
   const dayLabel = UTC_DAY_POSITION_LABEL[today.getUTCDay()];
   const dayValid = week[dayLabel];
 
-  console.log(week, dayLabel, 'dayValid?', dayValid);
-
   let timeValid = false;
 
   intervals.some((interval) => {
-    console.log(hours, minutes, isBetweenInterval(interval, hours, minutes));
     if (isBetweenInterval(interval, hours, minutes)) {
       timeValid = true;
     }
