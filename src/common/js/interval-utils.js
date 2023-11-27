@@ -42,12 +42,11 @@ function createInterval() {
 function isBetweenInterval(interval, hours, minutes) {
   const { start, end } = interval;
 
-  if (
-    hours > start.hours ||
-    (hours === start.hours &&
-      minutes >= start.minutes &&
-      (hours < end.hours || (hours === end.hours && minutes <= end.minutes)))
-  ) {
+  const START_IN_MINUTES = start.hours * 60 + start.minutes;
+  const END_IN_MINUTES = end.hours * 60 + end.minutes;
+  const CURRENT_IN_MINUTES = hours * 60 + minutes;
+
+  if (CURRENT_IN_MINUTES >= START_IN_MINUTES && CURRENT_IN_MINUTES <= END_IN_MINUTES) {
     return true;
   }
 
@@ -71,9 +70,9 @@ function isInBlockedPeriod(week, intervals) {
   let timeValid = false;
 
   intervals.some((interval) => {
+    console.log(hours, minutes, isBetweenInterval(interval, hours, minutes));
     if (isBetweenInterval(interval, hours, minutes)) {
       timeValid = true;
-      console.log('timeValid?', timeValid);
     }
 
     return false;

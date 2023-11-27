@@ -28,11 +28,17 @@
       return;
     }
 
-    addToBlacklist(currentUrl);
-    dispatch('addSuccess', {
-      url: currentUrl,
-    });
-    currentUrl = '';
+    try {
+      addToBlacklist(currentUrl);
+
+      dispatch('addSuccess', {
+        url: currentUrl,
+      });
+      currentUrl = '';
+    } catch (e) {
+      errorMsg = `${currentUrl} already blacklisted!`;
+      timestamp = getTimestamp();
+    }
   }
 </script>
 
