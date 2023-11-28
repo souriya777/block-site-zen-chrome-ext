@@ -1,42 +1,31 @@
 :root {
+  // COLORS 60/30/10
   --color-primary: #121212; // google recommendation (not true black)
   --color-secondary: #fff;
   --color-accent: #ff69b4;
   --color-on-primary: var(--color-secondary);
   --color-on-accent: var(--color-primary);
   --color-accent-2: #bf6a95;
+  --color-accent-2: #917985;
   --color-accent-3: #ff45a2;
   --color-accent-4: #fc007e;
   --color-accent-transparent: #ff69b444;
   --color-accent-transparent-2: #ff69b477;
+  --color-discret: #a0a0a0;
+  --color-discret-2: #e1e0e0;
   --color-success: #69ffb4;
   --color-error: #d93025;
   --color-snackbar: #292323;
   --color-snackbar-text: #fcebeb;
 
-  --translate-button-summary: -30px;
-  --translate-button-detail: 30px;
-
-  --primary-60: #fff;
-  --secondary-30: #ff69b4;
-  --accent-10: #69ffb4;
-  --color-discret: #cccccc;
-  --old-color-primary: #ff69b4;
-  --old-color-on-primary: #fff;
-  --old-color-FIXME: #69ffb4;
-  --old-color-secondary: #8f8e8e;
-  --old-color-secondary-lighter: #9e9d9d;
-  --old-color-on-secondary: #fff;
-  // --color-primary-hover: #ff87c3;
-  // --color-primary-alternative: #000;
-  // --color-secondary: #333;
-  // --background-color-secondary: #333;
-  // --background-color-tertiary: #555;
-
   --height-input: 40px;
   --size-icon: 34px;
   --max-width-page-options: 900px;
+
   --border-radius-button: 6px;
+
+  --translate-button-summary: -30px;
+  --translate-button-detail: 30px;
   --transition-button: all ease 300ms;
 }
 
@@ -118,8 +107,9 @@ button.icon {
   align-items: center;
   height: var(--size-icon);
   width: var(--size-icon);
-  background-color: var(--color-accent-transparent);
+  background-color: var(--color-discret-2);
   fill: var(--color-accent);
+  transition: var(--transition-button);
   cursor: pointer;
 
   &:hover {

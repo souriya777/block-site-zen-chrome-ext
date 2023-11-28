@@ -17,29 +17,52 @@
 <svelte:window on:click={handleClick} />
 
 <main>
-  <div class="options">
-    <Headband>
-      <span slot="title">
-        <h1>BlockSiteZen</h1>
-      </span>
-    </Headband>
+  <Headband>
+    <span slot="title"><h1>BlockSiteZen Configuration</h1></span>
+    <span slot="action">&nbsp;</span>
+  </Headband>
 
-    <h2>Blocked urls</h2>
+  <section>
+    <h2>Which sites ?</h2>
     <Blacklist />
+  </section>
 
+  <section>
     <h2>When ?</h2>
     <Schedule {timestamp} />
-  </div>
+  </section>
 
   <Snackbar message={$snackbarMessage} />
 </main>
 
 <style>
-  main {
-    min-height: 100vh;
+  :root {
+    --max-width-options: 768px;
   }
 
-  .options {
-    font-size: 14px;
+  main {
+    border: 2px dashed hotpink;
+    min-height: 100vh;
+    max-width: var(--max-width-options);
+    margin-inline: auto;
+    font-size: var(--step--2);
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: var(--space-l);
+  }
+
+  main section:nth-of-type(2) {
+    margin-block-start: var(--space-l);
+  }
+
+  h2 {
+    margin-block: var(--space-2xs) var(--space-m);
+    font-size: var(--step-2);
+    font-family: 'montserrat-700';
+    text-align: center;
   }
 </style>

@@ -195,8 +195,8 @@
   }
 
   button.forbidden {
-    background-color: var(--old-color-secondary);
-    color: var(--color-discret);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
     cursor: not-allowed;
   }
 

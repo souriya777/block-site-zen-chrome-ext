@@ -6,13 +6,12 @@
 
 OPTIONS
 
-- design(options): refactor colors
-- refactor color CSS variables name
-- feat(options): make it beautiful
+- 🔴feat(options): make it beautiful
+- resolve `px`
+- --color-accent-2 twice
 - add a logo for my extension
+- test responsive
 - ci(prod): deploy to PROD
-
-- transition svelte ?
 - move all "utils" in gist
 
 # RUN

@@ -46,7 +46,6 @@
   }
 </script>
 
-intervals:{JSON.stringify($intervals)}
 <fieldset>
   <legend>interval : </legend>
   {#if $intervals}
@@ -72,7 +71,6 @@ intervals:{JSON.stringify($intervals)}
   <button on:click={addInterval}><PlusCircleSvg /></button>
 </fieldset>
 
-week:{JSON.stringify($week)}
 <fieldset>
   <legend>days :</legend>
 

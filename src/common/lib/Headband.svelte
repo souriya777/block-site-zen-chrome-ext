@@ -25,6 +25,7 @@
     width: 100%;
     padding: var(--space-s) var(--space-xl);
     background-color: var(--color-primary);
+    color: var(--color-on-primary);
     font-size: var(--step--1);
   }
 </style>

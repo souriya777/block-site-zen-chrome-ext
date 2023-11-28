@@ -64,6 +64,7 @@
 <style>
   form {
     display: flex;
+    justify-content: space-between;
   }
 
   button {
