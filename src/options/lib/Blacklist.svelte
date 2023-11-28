@@ -1,11 +1,8 @@
 <script>
-  import { blacklist } from '@common/js/store';
+  import { blacklist, snackbarMessage } from '@common/js/store';
   import { extractDomain } from '@common/js/string-utils';
   import BinSvg from '@common/lib/BinSvg.svelte';
-  import Snackbar from '@common/lib/Snackbar.svelte';
   import AddUrlForm from '@options/lib/AddUrlForm.svelte';
-
-  let successMessage = null;
 
   function removeUrlFromBlacklist(url) {
     blacklist.update((arr) => [...arr.filter((arrUrl) => arrUrl !== url)]);
@@ -16,7 +13,7 @@
   }
 
   function showSucessMessage(url) {
-    successMessage = `${extractDomain(url)} was added with success 🎉`;
+    $snackbarMessage = `${extractDomain(url)} was added with success 🎉`;
   }
 </script>
 
@@ -49,8 +46,6 @@
       {/if}
     </ul>
   </div>
-
-  <Snackbar message={successMessage} />
 </div>
 
 <style>

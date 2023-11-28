@@ -4,6 +4,8 @@
   import Headband from '@common/lib/Headband.svelte';
   import Blacklist from '@options/lib/Blacklist.svelte';
   import { getTimestamp } from '@common/js/svelte-utils';
+  import { snackbarMessage } from '@common/js/store';
+  import Snackbar from '@common/lib/Snackbar.svelte';
 
   let timestamp;
 
@@ -28,11 +30,13 @@
     <h2>When ?</h2>
     <Schedule {timestamp} />
   </div>
+
+  <Snackbar message={$snackbarMessage} />
 </main>
 
 <style>
   main {
-    height: 100%;
+    min-height: 100vh;
   }
 
   .options {

@@ -6,7 +6,6 @@
 
 OPTIONS
 
-- feat(snackbar): improve snackbar position
 - design(options): refactor colors
 - refactor color CSS variables name
 - feat(options): make it beautiful

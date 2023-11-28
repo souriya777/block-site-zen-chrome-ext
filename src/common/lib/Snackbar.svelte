@@ -41,18 +41,15 @@
     position: absolute;
     left: 50%;
     bottom: 0;
-    display: none;
-    min-width: var(--width-snackbar);
-    min-height: var(--height-snackbar);
+    display: flex;
+    height: 0;
     margin-block-end: 10px;
-    padding: 6px 16px;
     border-radius: 4px;
     overflow: hidden;
     background-color: var(--color-snackbar);
     color: var(--color-snackbar-text);
     transform: translateX(-50%);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    animation: grow ease 200ms;
   }
 
   .content {
@@ -62,7 +59,9 @@
   }
 
   .visible {
-    display: flex;
+    height: var(--height-snackbar);
+    padding: 6px 16px;
+    transition: height 200ms cubic-bezier(0, 0.7, 0.26, 0.95);
   }
 
   .hide {
@@ -80,14 +79,8 @@
     cursor: pointer;
   }
 
-  @keyframes grow {
-    from {
-      height: 0;
-    }
-
-    to {
-      height: var(--height-snackbar);
-    }
+  button:hover {
+    color: var(--color-accent-3);
   }
 
   @keyframes hide {
