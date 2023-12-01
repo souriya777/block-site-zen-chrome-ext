@@ -14,6 +14,9 @@
   let listElement;
   let lastElement;
 
+  $: blacklistVisible = $blacklist && $blacklist.length > 0;
+  $: scrollButtonVisible = blacklistVisible && $blacklist.length > 5;
+
   $: scrollable = listElement && listElement.clientHeight > MAX_HEIGHT_CONTENT_LIST ? true : false;
 
   $: if (lastElement && blacklistElement) {
@@ -42,7 +45,7 @@
   }
 </script>
 
-<div bind:this={blacklistElement} class="blacklist">
+<div bind:this={blacklistElement} class="blacklist container">
   <div class="header">
     <div class="clear">
       <button class="normal" on:click={clearBlacklist}>
@@ -64,7 +67,7 @@
     class:scrollable
     style={`max-height: ${MAX_HEIGHT_CONTENT_LIST}px`}
   >
-    {#if $blacklist && $blacklist.length > 0}
+    {#if blacklistVisible}
       <ul bind:this={listElement}>
         {#each $blacklist as url, i}
           {#if i === $blacklist.length - 1}
@@ -83,9 +86,11 @@
     {/if}
   </div>
 
-  <div class="floating-button">
-    <ButtonFloatingDown on:click={scrollDown} />
-  </div>
+  {#if scrollButtonVisible}
+    <div class="floating-button">
+      <ButtonFloatingDown on:click={scrollDown} />
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -112,7 +117,7 @@
   }
 
   li:hover {
-    color: var(--color-primary);
+    color: var(--color-accent-4);
   }
 
   .blacklist {

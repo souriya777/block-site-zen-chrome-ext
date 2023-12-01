@@ -6,10 +6,9 @@
 
 OPTIONS
 
-- 🔴feat(options): make it beautiful
+- add a logo for my extension
 - resolve `px`
 - --color-accent-2 twice
-- add a logo for my extension
 - test responsive
 - ci(prod): deploy to PROD
 - move all "utils" in gist

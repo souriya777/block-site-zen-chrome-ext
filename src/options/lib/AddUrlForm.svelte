@@ -66,8 +66,4 @@
     display: flex;
     justify-content: space-between;
   }
-
-  button {
-    margin-inline-start: 10px;
-  }
 </style>

@@ -1,9 +1,8 @@
 <script>
   import { get } from 'svelte/store';
-  import { intervals, week } from '@common/js/store';
+  import { intervals, week, snackbarMessage } from '@common/js/store';
   import { createInterval } from '@common/js/interval-utils';
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
-  import PlusCircleSvg from '@common/lib/PlusCircleSvg.svelte';
   import Interval from '@options/lib/Interval.svelte';
   import BeautifulCheckbox from './BeautifulCheckbox.svelte';
 
@@ -40,64 +39,122 @@
     const checked = e.target.checked;
     const name = e.target.name;
     week.update((current) => ({ ...current, [name]: checked }));
-  }
 
-  function save() {
-    console.log('TODO save');
+    $snackbarMessage = `${name} ${checked ? 'added' : 'removed'}`;
   }
 </script>
 
-<fieldset>
-  <legend>interval : </legend>
-  {#if $intervals}
-    {#each $intervals as interval, i (interval.id)}
-      <div class="schedule__interval">
-        <Interval
-          id={interval.id}
-          startHours={interval?.start?.hours}
-          startMinutes={interval?.start?.minutes}
-          endHours={interval?.end?.hours}
-          endMinutes={interval?.end?.minutes}
-          on:update={updateInterval}
-          {timestamp}
-        />
-        {#if i > 0}
-          <button on:click={() => removeInterval(interval.id)}>
-            <MinusCircleSvg />
-          </button>
-        {/if}
+<div class="schedule">
+  <div class="container">
+    <div class="header">
+      <h3>Hours</h3>
+    </div>
+
+    <div class="content">
+      {#if $intervals}
+        {#each $intervals as interval, i (interval.id)}
+          <div class="schedule__interval">
+            <Interval
+              id={interval.id}
+              startHours={interval?.start?.hours}
+              startMinutes={interval?.start?.minutes}
+              endHours={interval?.end?.hours}
+              endMinutes={interval?.end?.minutes}
+              on:update={updateInterval}
+              {timestamp}
+            />
+            {#if i > 0}
+              <span class="minus">
+                <button class="icon primary" on:click={() => removeInterval(interval.id)}>
+                  <MinusCircleSvg />
+                </button>
+              </span>
+            {/if}
+          </div>
+        {/each}
+      {/if}
+
+      <div class="schudule__action">
+        <button class="normal primary" on:click={addInterval}>
+          <span class="summary">Add!</span>
+          <span class="detail">Add Interval</span>
+        </button>
       </div>
-    {/each}
-  {/if}
-  <button on:click={addInterval}><PlusCircleSvg /></button>
-</fieldset>
+    </div>
+  </div>
 
-<fieldset>
-  <legend>days :</legend>
+  <div class="container days">
+    <div class="header">
+      <h3>Days</h3>
+    </div>
 
-  <!-- {JSON.stringify($week)} -->
+    <div class="content">
+      {#if $week}
+        <BeautifulCheckbox name="monday" label="M" checked={$week.monday} on:click={updateWeek} />
 
-  {#if $week}
-    <BeautifulCheckbox name="monday" label="M" checked={$week.monday} on:click={updateWeek} />
+        <BeautifulCheckbox name="tuesday" label="T" checked={$week.tuesday} on:click={updateWeek} />
 
-    <BeautifulCheckbox name="tuesday" label="T" checked={$week.tuesday} on:click={updateWeek} />
+        <BeautifulCheckbox
+          name="wednesday"
+          label="W"
+          checked={$week.wednesday}
+          on:click={updateWeek}
+        />
 
-    <BeautifulCheckbox name="wednesday" label="W" checked={$week.wednesday} on:click={updateWeek} />
+        <BeautifulCheckbox
+          name="thursday"
+          label="T"
+          checked={$week.thursday}
+          on:click={updateWeek}
+        />
 
-    <BeautifulCheckbox name="thursday" label="T" checked={$week.thursday} on:click={updateWeek} />
+        <BeautifulCheckbox name="friday" label="F" checked={$week.friday} on:click={updateWeek} />
 
-    <BeautifulCheckbox name="friday" label="F" checked={$week.friday} on:click={updateWeek} />
+        <BeautifulCheckbox
+          name="saturday"
+          label="S"
+          checked={$week.saturday}
+          on:click={updateWeek}
+        />
 
-    <BeautifulCheckbox name="saturday" label="S" checked={$week.saturday} on:click={updateWeek} />
-
-    <BeautifulCheckbox name="sunday" label="S" checked={$week.sunday} on:click={updateWeek} />
-  {/if}
-</fieldset>
-
-<button class="normal primary" on:click={save}>Save</button>
+        <BeautifulCheckbox name="sunday" label="S" checked={$week.sunday} on:click={updateWeek} />
+      {/if}
+    </div>
+  </div>
+</div>
 
 <style>
+  h3 {
+    font-size: var(--step-1);
+  }
+
+  .schedule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .schedule .container:nth-child(2n) {
+    margin-block-start: var(--space-m);
+  }
+
+  .schudule__action {
+    margin-block-start: var(--space-m);
+  }
+
+  .header {
+    padding: var(--space-xs) var(--space-m);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .content {
+    padding: var(--space-m) var(--space-l);
+  }
+
   .schedule__interval {
     display: flex;
+    align-items: center;
+    margin-block-end: var(--space-xs);
   }
 </style>

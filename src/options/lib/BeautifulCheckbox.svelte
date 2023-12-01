@@ -4,7 +4,7 @@
   export let checked;
 </script>
 
-<span class="schedule-checkbox">
+<span class="beautiful-checkbox">
   <input type="checkbox" id={name} {name} bind:checked on:click />
   <label for={name}>
     <span class="checkbox__border">
@@ -23,6 +23,10 @@
     --size: 24px;
   }
 
+  .beautiful-checkbox {
+    margin-inline-end: var(--space-xs);
+  }
+
   input {
     width: 0;
     height: 0;
@@ -32,13 +36,15 @@
     display: inline-flex;
     align-items: center;
     color: var(--color-primary);
+    font-family: 'montserrat-700';
+    font-size: var(--step-0);
     transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
     cursor: pointer;
   }
 
   label:hover,
   input:focus + label {
-    color: var(--color-accent-3);
+    color: var(--color-accent-4);
   }
 
   label:hover .checkbox__border {

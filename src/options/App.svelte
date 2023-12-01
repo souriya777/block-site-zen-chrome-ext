@@ -23,12 +23,12 @@
   </Headband>
 
   <section>
-    <h2>Which sites ?</h2>
+    <h2>Which sites</h2>
     <Blacklist />
   </section>
 
   <section>
-    <h2>When ?</h2>
+    <h2>When</h2>
     <Schedule {timestamp} />
   </section>
 
@@ -37,30 +37,32 @@
 
 <style>
   :root {
-    --max-width-options: 768px;
+    --max-width-options: 802px;
   }
 
   main {
-    border: 2px dashed hotpink;
     min-height: 100vh;
-    max-width: var(--max-width-options);
-    margin-inline: auto;
-    font-size: var(--step--2);
+    font-size: var(--step--1);
   }
 
   section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-inline: var(--space-l);
+    max-width: var(--max-width-options);
+    margin-inline: auto;
+  }
+
+  main section:first-of-type {
+    margin-block-start: var(--space-s);
   }
 
   main section:nth-of-type(2) {
-    margin-block-start: var(--space-l);
+    margin-block: var(--space-l) var(--space-3xl);
   }
 
   h2 {
-    margin-block: var(--space-2xs) var(--space-m);
+    margin-block-end: var(--space-xs);
     font-size: var(--step-2);
     font-family: 'montserrat-700';
     text-align: center;

@@ -34,7 +34,7 @@
 </script>
 
 <div class="input">
-  <div class="container">
+  <div class="input__container">
     <input
       type="text"
       class:error={isNotEmpty(errorMsg)}
@@ -73,18 +73,18 @@
     margin-inline-end: 4px;
   }
 
-  .container {
+  .input__container {
     background-color: var(--color-primary);
     display: flex;
     align-items: center;
     overflow: hidden;
   }
 
-  .container .input__icon {
+  .input__container .input__icon {
     order: 1;
   }
 
-  .container input {
+  .input__container input {
     order: 2;
   }
 

@@ -38,7 +38,8 @@
   }
 
   .snackbar {
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     left: 50%;
     bottom: 0;
     display: flex;

@@ -43,20 +43,36 @@
 </script>
 
 <div class="interval">
-  <Time
-    id={`start_${id}`}
-    initHours={startHours}
-    initMinutes={startMinutes}
-    on:update={updateStart}
-    {timestamp}
-  />
-  <Time
-    id={`end_${id}`}
-    initHours={endHours}
-    initMinutes={endMinutes}
-    minHours={startHours}
-    minMinutes={startMinutes}
-    on:update={updateEnd}
-    {timestamp}
-  />
+  <div class="start">
+    <Time
+      id={`start_${id}`}
+      initHours={startHours}
+      initMinutes={startMinutes}
+      on:update={updateStart}
+      {timestamp}
+    />
+  </div>
+
+  <div class="end">
+    <Time
+      id={`end_${id}`}
+      initHours={endHours}
+      initMinutes={endMinutes}
+      minHours={startHours}
+      minMinutes={startMinutes}
+      on:update={updateEnd}
+      {timestamp}
+    />
+  </div>
 </div>
+
+<style>
+  .interval {
+    display: flex;
+  }
+
+  .start,
+  .end {
+    margin-inline-end: var(--space-m);
+  }
+</style>
