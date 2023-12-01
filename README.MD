@@ -4,14 +4,15 @@
 
 # TODO
 
-OPTIONS
+https://chrome.google.com/webstore/devconsole/register
+https://developer.chrome.com/docs/webstore/publish/
 
-- add a logo for my extension
-- resolve `px`
-- --color-accent-2 twice
-- test responsive
-- ci(prod): deploy to PROD
+- WAIT PAIEMENT : ci(prod): deploy to PROD
+
+- add password ? chrome-extension://nnkkgbabjapocnoedeaifoimlbejjckj/html/settings.html
 - move all "utils" in gist
+- fix `px`
+- fix `colors`
 
 # RUN
 
