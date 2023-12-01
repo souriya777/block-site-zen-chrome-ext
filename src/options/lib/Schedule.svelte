@@ -5,6 +5,7 @@
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
   import PlusCircleSvg from '@common/lib/PlusCircleSvg.svelte';
   import Interval from '@options/lib/Interval.svelte';
+  import BeautifulCheckbox from './BeautifulCheckbox.svelte';
 
   export let timestamp;
 
@@ -74,46 +75,22 @@
 <fieldset>
   <legend>days :</legend>
 
+  <!-- {JSON.stringify($week)} -->
+
   {#if $week}
-    <span>
-      <input type="checkbox" name="monday" bind:checked={$week.monday} on:click={updateWeek} />
-      <label for="monday">M</label>
-    </span>
+    <BeautifulCheckbox name="monday" label="M" checked={$week.monday} on:click={updateWeek} />
 
-    <span>
-      <input type="checkbox" name="tuesday" bind:checked={$week.tuesday} on:click={updateWeek} />
-      <label for="tuesday">T</label>
-    </span>
+    <BeautifulCheckbox name="tuesday" label="T" checked={$week.tuesday} on:click={updateWeek} />
 
-    <span>
-      <input
-        type="checkbox"
-        name="wednesday"
-        bind:checked={$week.wednesday}
-        on:click={updateWeek}
-      />
-      <label for="wednesday">W</label>
-    </span>
+    <BeautifulCheckbox name="wednesday" label="W" checked={$week.wednesday} on:click={updateWeek} />
 
-    <span>
-      <input type="checkbox" name="thursday" bind:checked={$week.thursday} on:click={updateWeek} />
-      <label for="thursday">T</label>
-    </span>
+    <BeautifulCheckbox name="thursday" label="T" checked={$week.thursday} on:click={updateWeek} />
 
-    <span>
-      <input type="checkbox" name="friday" bind:checked={$week.friday} on:click={updateWeek} />
-      <label for="friday">F</label>
-    </span>
+    <BeautifulCheckbox name="friday" label="F" checked={$week.friday} on:click={updateWeek} />
 
-    <span>
-      <input type="checkbox" name="saturday" bind:checked={$week.saturday} on:click={updateWeek} />
-      <label for="saturday">S</label>
-    </span>
+    <BeautifulCheckbox name="saturday" label="S" checked={$week.saturday} on:click={updateWeek} />
 
-    <span>
-      <input type="checkbox" name="sunday" bind:checked={$week.sunday} on:click={updateWeek} />
-      <label for="sunday">S</label>
-    </span>
+    <BeautifulCheckbox name="sunday" label="S" checked={$week.sunday} on:click={updateWeek} />
   {/if}
 </fieldset>
 
