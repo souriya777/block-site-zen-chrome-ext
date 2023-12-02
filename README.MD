@@ -4,12 +4,13 @@
 
 # TODO
 
+- add password
+
 https://chrome.google.com/webstore/devconsole/register
 https://developer.chrome.com/docs/webstore/publish/
 
 - WAIT PAIEMENT : ci(prod): deploy to PROD
 
-- add password ? chrome-extension://nnkkgbabjapocnoedeaifoimlbejjckj/html/settings.html
 - move all "utils" in gist
 - fix `px`
 - fix `colors`

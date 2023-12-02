@@ -1,7 +1,7 @@
 <script>
   import { get } from 'svelte/store';
   import { intervals, week, snackbarMessage } from '@common/js/store';
-  import { createInterval } from '@common/js/interval-utils';
+  import { createInterval, sortIntervalsByAscendingStart } from '@common/js/interval-utils';
   import MinusCircleSvg from '@common/lib/MinusCircleSvg.svelte';
   import Interval from '@options/lib/Interval.svelte';
   import BeautifulCheckbox from './BeautifulCheckbox.svelte';
@@ -11,6 +11,8 @@
   $: if ($intervals != null && $intervals.length === 0) {
     intervals.set([{ ...createInterval() }]);
   }
+
+  $: sortedIntervals = $intervals != null ? $intervals.sort(sortIntervalsByAscendingStart) : null;
 
   function addInterval() {
     const interval = createInterval();
@@ -51,8 +53,8 @@
     </div>
 
     <div class="content">
-      {#if $intervals}
-        {#each $intervals as interval, i (interval.id)}
+      {#if sortedIntervals}
+        {#each sortedIntervals as interval, i (interval.id)}
           <div class="schedule__interval">
             <Interval
               id={interval.id}

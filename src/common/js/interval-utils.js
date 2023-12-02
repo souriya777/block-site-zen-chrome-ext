@@ -78,6 +78,23 @@ function isInBlockedPeriod(week, intervals) {
   return dayValid && timeValid;
 }
 
+/**
+ *
+ * @param {import('@common/js/types').Interval} a
+ * @param {import('@common/js/types').Interval} b
+ * @returns {number}
+ */
+function sortIntervalsByAscendingStart(a, b) {
+  if (!a || !b) {
+    return 0;
+  }
+
+  const startMinutes = a.start.hours * 60 + a.start.minutes;
+  const endMinutes = a.end.hours * 60 + a.end.minutes;
+
+  return startMinutes < endMinutes ? 1 : -1;
+}
+
 export {
   START_HOURS,
   START_MINUTES,
@@ -86,4 +103,5 @@ export {
   createInterval,
   isInBlockedPeriod,
   isBetweenInterval,
+  sortIntervalsByAscendingStart,
 };
