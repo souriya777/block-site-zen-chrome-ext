@@ -4,10 +4,24 @@
   import Headband from '@common/lib/Headband.svelte';
   import Blacklist from '@options/lib/Blacklist.svelte';
   import { getTimestamp } from '@common/js/svelte-utils';
-  import { snackbarMessage } from '@common/js/store';
+  import { pin, authorizationToken, snackbarMessage } from '@common/js/store';
   import Snackbar from '@common/lib/Snackbar.svelte';
+  import Poppin from '@common/lib/Poppin.svelte';
+  import ValidLockForm from '@options/lib/ValidLockForm.svelte';
+  import Pin from '@options/lib/Pin.svelte';
+  import { noScroll, scroll } from '@common/js/dom-utils';
+  import { isPinValid } from '@common/js/pin-utils';
 
   let timestamp;
+  let isAuthorized = true;
+
+  // $: if ($pin) {
+  //   isAuthorized = isPinValid();
+  // }
+  // $: if ($authorizationToken) {
+  //   isAuthorized = true;
+  // }
+  // $: isAuthorized ? scroll() : noScroll();
 
   function handleClick() {
     timestamp = getTimestamp();
@@ -16,7 +30,14 @@
 
 <svelte:window on:click={handleClick} />
 
-<main>
+{#if !isAuthorized}
+  <Poppin>
+    <ValidLockForm validate={isPinValid}>
+      <span slot="title">Enter the PIN :</span>
+    </ValidLockForm>
+  </Poppin>
+{/if}
+<main class:blurred={!isAuthorized}>
   <Headband>
     <span slot="title"><h1>BlockSiteZen Configuration</h1></span>
     <span slot="action">&nbsp;</span>
@@ -30,6 +51,11 @@
   <section>
     <h2>When</h2>
     <Schedule {timestamp} />
+  </section>
+
+  <section>
+    <h2>Block Code</h2>
+    <Pin />
   </section>
 
   <Snackbar message={$snackbarMessage} />
@@ -57,8 +83,12 @@
     margin-block-start: var(--space-s);
   }
 
-  main section:nth-of-type(2) {
-    margin-block: var(--space-l) var(--space-3xl);
+  main section:not(:first-of-type) {
+    margin-block-start: var(--space-l);
+  }
+
+  main section:last-of-type {
+    margin-block-end: var(--space-3xl);
   }
 
   h2 {
@@ -66,5 +96,9 @@
     font-size: var(--step-2);
     font-family: 'montserrat-700';
     text-align: center;
+  }
+
+  .blurred {
+    filter: blur(5px);
   }
 </style>

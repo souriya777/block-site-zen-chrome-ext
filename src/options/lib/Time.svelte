@@ -56,7 +56,7 @@
   function scrollToSelected() {
     const elt = document.querySelector(`button.selected.${id}`);
     if (elt) {
-      elt.scrollIntoView({ block: 'start' });
+      elt.scrollIntoView({ block: 'nearest' });
     }
   }
 

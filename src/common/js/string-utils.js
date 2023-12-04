@@ -17,6 +17,10 @@ export function isNotEmpty(str) {
   return str !== null && str !== undefined && typeof str === 'string' && str.trim().length > 0;
 }
 
+export function isEmpty(str) {
+  return !isNotEmpty(str);
+}
+
 /**
  * @param {string} str
  * @returns {boolean}

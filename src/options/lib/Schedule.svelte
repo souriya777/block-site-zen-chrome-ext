@@ -15,7 +15,7 @@
   $: sortedIntervals = $intervals != null ? $intervals.sort(sortIntervalsByAscendingStart) : null;
 
   function addInterval() {
-    const interval = createInterval();
+    const interval = createInterval($intervals);
     intervals.update((arr) => [...arr, { ...interval }]);
   }
 
@@ -48,11 +48,13 @@
 
 <div class="schedule">
   <div class="container">
-    <div class="header">
+    <div class="container__header">
       <h3>Hours</h3>
     </div>
 
-    <div class="content">
+    <div class="container__content">
+      <!-- TO DEBUG -->
+      <!-- sortedIntervals:{JSON.stringify(sortedIntervals)} -->
       {#if sortedIntervals}
         {#each sortedIntervals as interval, i (interval.id)}
           <div class="schedule__interval">
@@ -86,11 +88,11 @@
   </div>
 
   <div class="container days">
-    <div class="header">
+    <div class="container__header">
       <h3>Days</h3>
     </div>
 
-    <div class="content">
+    <div class="container__content">
       {#if $week}
         <BeautifulCheckbox name="monday" label="M" checked={$week.monday} on:click={updateWeek} />
 
@@ -126,10 +128,6 @@
 </div>
 
 <style>
-  h3 {
-    font-size: var(--step-1);
-  }
-
   .schedule {
     display: flex;
     flex-direction: column;
@@ -142,16 +140,6 @@
 
   .schudule__action {
     margin-block-start: var(--space-m);
-  }
-
-  .header {
-    padding: var(--space-xs) var(--space-m);
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
-  }
-
-  .content {
-    padding: var(--space-m) var(--space-l);
   }
 
   .schedule__interval {

@@ -45,8 +45,12 @@
   }
 </script>
 
+<!-- TO DEBUG -->
+<!-- blacklist:{JSON.stringify($blacklist)}
+<code> const blacklist = await chrome.storage.local.get('blacklist'); </code> -->
+
 <div bind:this={blacklistElement} class="blacklist container">
-  <div class="header">
+  <div class="container__header header">
     <div class="clear">
       <button class="normal" on:click={clearBlacklist}>
         <span class="summary">Clear!</span>
@@ -129,9 +133,7 @@
 
   .header {
     display: flex;
-    padding-inline: var(--padding-container);
-    padding-block: 16px 28px;
-    background-color: var(--color-primary);
+    padding-inline: var(--space-s);
   }
 
   .content {

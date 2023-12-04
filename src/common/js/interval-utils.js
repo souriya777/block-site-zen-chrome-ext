@@ -14,18 +14,38 @@ const UTC_DAY_POSITION_LABEL = {
 };
 
 /**
+ * @param {import('@common/js/types').Interval[]} intervals
  * @returns {import('@common/js/types').Interval}
  */
-function createInterval() {
+function createInterval(intervals = null) {
+  let latest = null;
+
+  if (intervals) {
+    latest = intervals.sort(sortIntervalsByAscendingStart).at(-1);
+  }
+
+  let hours = START_HOURS;
+  let minutes = START_MINUTES;
+  let endHours = END_HOURS;
+  let endMinutes = END_MINUTES;
+
+  if (latest) {
+    hours = latest.end?.hours;
+    minutes = latest.end?.minutes;
+
+    endHours = hours <= 22 ? hours + 1 : 23;
+    endMinutes = minutes;
+  }
+
   const item = {
     id: crypto.randomUUID(),
     start: {
-      hours: START_HOURS,
-      minutes: START_MINUTES,
+      hours,
+      minutes,
     },
     end: {
-      hours: END_HOURS,
-      minutes: END_MINUTES,
+      hours: endHours,
+      minutes: endMinutes,
     },
   };
 
@@ -79,7 +99,6 @@ function isInBlockedPeriod(week, intervals) {
 }
 
 /**
- *
  * @param {import('@common/js/types').Interval} a
  * @param {import('@common/js/types').Interval} b
  * @returns {number}
@@ -89,10 +108,10 @@ function sortIntervalsByAscendingStart(a, b) {
     return 0;
   }
 
-  const startMinutes = a.start.hours * 60 + a.start.minutes;
-  const endMinutes = a.end.hours * 60 + a.end.minutes;
+  const aMinutes = a.start.hours * 60 + a.start.minutes;
+  const bMinutes = b.start.hours * 60 + b.start.minutes;
 
-  return startMinutes < endMinutes ? 1 : -1;
+  return aMinutes < bMinutes ? -1 : 1;
 }
 
 export {

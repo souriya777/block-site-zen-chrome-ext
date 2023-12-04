@@ -18,6 +18,8 @@ function writableStorage(key, initialValue, isChromeStorage = false) {
     // hack because chrome storage is ASYNChronous
     chrome.storage.local.get([key], (result) => {
       storageValue = result[key];
+      // TO DEBUG
+      // console.log(key, storageValue, '🟡');
       const initial = storageValue !== undefined ? JSON.parse(storageValue) : initialValue;
       writableValue.set(initial);
     });

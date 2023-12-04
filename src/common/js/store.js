@@ -7,6 +7,8 @@ const blacklist = writableChromeStorage('blacklist', []);
 const intervals = writableChromeStorage('intervals', []);
 /** @type {import('svelte/store').Writable<import('@common/js/types').Week>} */
 const week = writableChromeStorage('week', {});
+const pin = writableChromeStorage('pin', '');
+const authorizationToken = writable(false);
 const snackbarMessage = writable('');
 
-export { blacklist, intervals, week, snackbarMessage };
+export { blacklist, intervals, week, pin, authorizationToken, snackbarMessage };
