@@ -15,13 +15,13 @@
   let timestamp;
   let isAuthorized = true;
 
-  // $: if ($pin) {
-  //   isAuthorized = isPinValid();
-  // }
-  // $: if ($authorizationToken) {
-  //   isAuthorized = true;
-  // }
-  // $: isAuthorized ? scroll() : noScroll();
+  $: if ($pin) {
+    isAuthorized = isPinValid();
+  }
+  $: if ($authorizationToken) {
+    isAuthorized = true;
+  }
+  $: isAuthorized ? scroll() : noScroll();
 
   function handleClick() {
     timestamp = getTimestamp();
@@ -44,7 +44,7 @@
   </Headband>
 
   <section>
-    <h2>Which sites</h2>
+    <h2>Blocked sites</h2>
     <Blacklist />
   </section>
 

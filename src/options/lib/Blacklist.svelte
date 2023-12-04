@@ -73,14 +73,14 @@
   >
     {#if blacklistVisible}
       <ul bind:this={listElement}>
-        {#each $blacklist as url, i}
+        {#each $blacklist as domain, i}
           {#if i === $blacklist.length - 1}
             <li class="last" bind:this={lastElement}>
-              <BlacklistItem {url} on:click={(e) => removeUrlFromBlacklist(e.detail.url)} />
+              <BlacklistItem {domain} on:click={(e) => removeUrlFromBlacklist(e.detail.url)} />
             </li>
           {:else}
             <li>
-              <BlacklistItem {url} on:click={(e) => removeUrlFromBlacklist(e.detail.url)} />
+              <BlacklistItem {domain} on:click={(e) => removeUrlFromBlacklist(e.detail.url)} />
             </li>
           {/if}
         {/each}

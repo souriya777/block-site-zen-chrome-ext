@@ -1,22 +1,27 @@
+import { get } from 'svelte/store';
 import ChromeLocalStorage from '@common/js/ChromeLocalStorage';
 import { isInBlockedPeriod } from '@common/js/interval-utils';
 import { isBlacklisted } from '@common/js/blacklist-utils';
 import { intervals, week } from '@common/js/store';
-import { get } from 'svelte/store';
+import { extractDomain } from '@common/js/string-utils';
+import { incrementStat } from '@common/js/stats-utils';
 
 // console.log('🙏CONTENT.JS...');
 
 ChromeLocalStorage.get('blacklist').then(() => {
+  const domain = extractDomain(window.location.href);
+  // stats
+  incrementStat(domain);
+
+  // blacklist
   const blacklisted = isBlacklisted(window.location.href);
-  // console.log('blacklisted?', blacklisted);
   const inBlockedPeriod = isInBlockedPeriod(get(week), get(intervals));
-  // console.log('in blocked period?', isInBlockedPeriod(get(week), get(intervals)));
 
   if (blacklisted && inBlockedPeriod) {
     ChromeLocalStorage.set('currentUrl', window.location.href);
 
+    // redirect
     const optionUrl = 'chrome-extension://' + chrome.runtime.id + '/focus.html';
-    // console.log(optionUrl);
     chrome.runtime.sendMessage({ redirect: optionUrl });
   }
 });
