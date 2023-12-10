@@ -10,7 +10,7 @@
   const dispatch = createEventDispatcher();
 
   function handleClick() {
-    dispatch('click', {
+    dispatch('remove', {
       domain,
     });
   }

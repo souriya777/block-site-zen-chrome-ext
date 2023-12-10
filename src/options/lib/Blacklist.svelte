@@ -23,8 +23,8 @@
     observeVisibleElement(lastElement, blacklistElement, 'scrollEnd', 0.8);
   }
 
-  function removeUrlFromBlacklist(url) {
-    blacklist.update((arr) => [...arr.filter((arrUrl) => arrUrl !== url)]);
+  function removeUrlFromBlacklist(domain) {
+    blacklist.update((arr) => [...arr.filter((arrDomain) => arrDomain !== domain)]);
   }
 
   function clearBlacklist() {
@@ -42,6 +42,10 @@
         behavior: 'smooth',
       });
     }
+  }
+
+  function handleRemove(e) {
+    removeUrlFromBlacklist(e.detail.domain);
   }
 </script>
 
@@ -76,11 +80,11 @@
         {#each $blacklist as domain, i}
           {#if i === $blacklist.length - 1}
             <li class="last" bind:this={lastElement}>
-              <BlacklistItem {domain} on:click={(e) => removeUrlFromBlacklist(e.detail.url)} />
+              <BlacklistItem {domain} on:remove={handleRemove} />
             </li>
           {:else}
             <li>
-              <BlacklistItem {domain} on:click={(e) => removeUrlFromBlacklist(e.detail.url)} />
+              <BlacklistItem {domain} on:remove={handleRemove} />
             </li>
           {/if}
         {/each}

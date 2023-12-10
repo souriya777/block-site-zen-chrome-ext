@@ -4,15 +4,12 @@
 
 # TODO
 
-- add password
+- feat(pause site) : can exceptionnaly pause a site ?
 
 - ci(prod): deploy to PROD
   -- https://chrome.google.com/webstore/devconsole/register
   -- https://developer.chrome.com/docs/webstore/publish/
-
 - move all "utils" in gist
-- fix `px`
-- fix `colors`
 
 # RUN
 
